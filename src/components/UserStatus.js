@@ -16,7 +16,7 @@ export default class UserStatus extends React.Component {
 
   render() {
     return <Container>
-      <Table celled padded>
+      <Table celled padded unstackable>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Name</Table.HeaderCell>

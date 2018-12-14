@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
-import { Grid, Segment, Container } from 'semantic-ui-react'
-import AddAdmin from "./AddNewAdminUser";
+import { Grid, Segment } from 'semantic-ui-react'
 import Form from "semantic-ui-react/dist/es/collections/Form/Form";
 import Breadcrumb from "semantic-ui-react/dist/es/collections/Breadcrumb/Breadcrumb";
-import AddNewCoach from "./AddNewCoach";
 import Label from "semantic-ui-react/dist/es/elements/Label/Label";
-import DatePicker from "react-datepicker/es/index";
 import Button from "semantic-ui-react/dist/es/elements/Button/Button";
 import TextArea from "semantic-ui-react/dist/es/addons/TextArea/TextArea";
 
 export default class CreateHub extends Component {
   render() {
-    return <Container fluid>
+    return <React.Fragment>
       <br/>
-      <Grid columns={5}>
+      <Grid stackable>
 
         <Grid.Column width={1}>
         </Grid.Column>
@@ -21,7 +18,7 @@ export default class CreateHub extends Component {
         <Grid.Column width={6}>
           <Segment>
             <Label color={'blue'} size={'medium'} attached='top'>Hub Details</Label>
-            <Form size={'large'}>
+            <Form>
               <Grid columns={2} >
                 <Grid.Row centered>
                   <Grid.Column width={6}>
@@ -65,7 +62,7 @@ export default class CreateHub extends Component {
         <Grid.Column width={7}>
           <Segment>
             <Label color={'blue'} size={'medium'} attached='top'>Props</Label>
-            <Form size={'huge'}>
+            <Form>
               <Grid columns={2} >
                 <Grid.Row centered>
                   <Grid.Column width={6}>
@@ -124,6 +121,6 @@ export default class CreateHub extends Component {
       <Button primary>
         Create Hub
       </Button>
-    </Container>
+    </React.Fragment>
   }
 }

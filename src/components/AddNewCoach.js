@@ -5,6 +5,9 @@ import Grid from "semantic-ui-react/dist/es/collections/Grid/Grid";
 import Container from "semantic-ui-react/dist/es/elements/Container/Container";
 import Label from "semantic-ui-react/dist/es/elements/Label/Label";
 import DatePicker from "react-datepicker";
+import Button from "semantic-ui-react/dist/es/elements/Button/Button";
+import TextArea from "semantic-ui-react/dist/es/addons/TextArea/TextArea";
+import Dropdown from "semantic-ui-react/dist/es/modules/Dropdown/Dropdown";
 
 
 export default class AddNewCoach extends React.Component {
@@ -33,7 +36,7 @@ export default class AddNewCoach extends React.Component {
 
           <Grid.Column width={6}>
             <Segment>
-              <Label  size={'medium'} attached='top'>Login Details</Label>
+              <Label color={'blue'} size={'medium'} attached='top'>Login Details</Label>
               <Form size={'large'}>
                 <Grid columns={2} >
                   <Grid.Row centered>
@@ -77,7 +80,7 @@ export default class AddNewCoach extends React.Component {
 
           <Grid.Column width={7}>
             <Segment>
-              <Label size={'medium'} attached='top'>Coach Details</Label>
+              <Label color={'blue'} size={'medium'} attached='top'>Coach Details</Label>
               <Form size={'huge'}>
                 <Grid columns={2} >
                   <Grid.Row centered>
@@ -96,7 +99,7 @@ export default class AddNewCoach extends React.Component {
                     </Grid.Column>
                     <Grid.Column width={10}>
                       <Form.Field>
-                        <Form.Input fluid placeholder="Address" />
+                        <TextArea placeholder='Address' style={{ minHeight: 100 }} />
                       </Form.Field>
                     </Grid.Column>
                   </Grid.Row>
@@ -152,7 +155,7 @@ export default class AddNewCoach extends React.Component {
                     </Grid.Column>
                     <Grid.Column width={10}>
                       <Form.Field>
-                        <Form.Input fluid placeholder="Mobile" />
+                        <Dropdown placeholder='Education' fluid multiple selection options={[]} />
                       </Form.Field>
                     </Grid.Column>
 
@@ -164,7 +167,8 @@ export default class AddNewCoach extends React.Component {
                     </Grid.Column>
                     <Grid.Column width={10}>
                       <Form.Field>
-                        <Form.Input fluid placeholder="Mobile" />
+                        <Dropdown placeholder='Sport(s)' fluid multiple selection options={[{key: 'a', text: 'Football' ,value: 'football'},
+                          {key: 'b', text: 'Boxing', value: 'boxing'}]} />
                       </Form.Field>
                     </Grid.Column>
 
@@ -180,6 +184,9 @@ export default class AddNewCoach extends React.Component {
 
         </Grid>
         <br/>
+      <Button primary>
+        Create Coach
+      </Button>
     </Container>
   }
 

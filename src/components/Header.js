@@ -25,27 +25,26 @@ class Header extends Component {
         <Dropdown text='User Management' pointing className='link item'>
           <Dropdown.Menu>
             <Dropdown.Item onClick={this.navigate} value={'user_mgmt'}>Add New User</Dropdown.Item>
-            <Dropdown.Item>User Details</Dropdown.Item>
+            <Dropdown.Item onClick={this.navigate} value={'user_status'}>User Details</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 
-        <Menu.Item
-          name='two'
-          active={activeItem === 'two'}
-          url={'hub_mgmt'}
-          onClick={this.navigate}
-        >
-          Hub Management
-        </Menu.Item>
+        <Dropdown text='Hub Management' pointing className='link item'>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={this.navigate} value={'create_hub'}>Create Hub</Dropdown.Item>
+            <Dropdown.Item onClick={this.navigate} value={'edit_hub'}>Edit Hub</Dropdown.Item>
+            <Dropdown.Item onClick={this.navigate} value={'delete_hub'}>Delete Hub</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
 
-        <Menu.Item
-          name='three'
-          active={activeItem === 'three'}
-          url={'stdnt_mgmt'}
-          onClick={this.navigate}
-        >
-          Student Management
-        </Menu.Item>
+        <Dropdown text='Student Management' pointing className='link item'>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={this.navigate} value={'new_std'}>New Registration</Dropdown.Item>
+            <Dropdown.Item onClick={this.navigate} value={'edit_std'}>Edit Registration</Dropdown.Item>
+            <Dropdown.Item onClick={this.navigate} value={'std_status'}>Update Status</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+
         <Menu.Menu position={'right'}>
           <Menu.Item name='sign-in' active={activeItem === 'sign-in'} onClick={() => this.props.showModal('SIGN_IN_MODAL')}>
             Sign-in

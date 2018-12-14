@@ -1,6 +1,14 @@
 import React from 'react'
 import { Form, Input, Message, Modal } from 'semantic-ui-react'
 
+const inlineStyle = {
+  modal : {
+    marginTop: '0px !important',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  }
+};
+
 export default class SignInModal extends React.Component {
 
   state = { username: '', pwd: '', username_error: null, pwd_error: null, is_loading: false};
@@ -33,7 +41,7 @@ export default class SignInModal extends React.Component {
     const { username, pwd, username_error, pwd_error, is_loading} = this.state;
 
     return (
-      <Modal closeIcon open={show} onClose={this.onModalClose}>
+      <Modal closeIcon centered style={inlineStyle.modal}  open={show} onClose={this.onModalClose}>
         <Modal.Header icon='archive'>Sign In</Modal.Header>
         <Modal.Content>
           <Form widths={'equal'} size={'large'} error loading={is_loading}>

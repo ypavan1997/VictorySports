@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { applyMiddleware, createStore, combineReducers } from 'redux';
@@ -11,6 +10,8 @@ import { routerMiddleware, connectRouter } from 'connected-react-router'
 import { ConnectedRouter } from 'connected-react-router'
 import { logger } from 'redux-logger';
 import modalReducer from "./redux/reducers/modalReducer";
+import 'semantic-ui-css/semantic.min.css'
+import './index.css';
 
 const history = createBrowserHistory({
   basename: '/victory',

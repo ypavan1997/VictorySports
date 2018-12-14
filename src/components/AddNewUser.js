@@ -31,7 +31,7 @@ export default class AddNewUser extends React.Component {
   }
 
   render() {
-    return <Container>
+    return <React.Fragment>
       <Segment>
         <Label  size={'medium'} color={'blue'} attached='top'>New User Details</Label>
         <Form>
@@ -195,7 +195,7 @@ export default class AddNewUser extends React.Component {
         {this.state.user_role === 'admin' && <Button primary content={'Add New Admin'}/> }
         {!this.state.user_role && <Button disabled content={'Add New User'}/> }
       </Segment>
-    </Container>
+    </React.Fragment>
   }
 
 }

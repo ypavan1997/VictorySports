@@ -13,6 +13,7 @@ import modalReducer from "./redux/reducers/modalReducer";
 import userReducer from "./redux/reducers/userReducer";
 import {addUser} from "./redux/actions/ModalActions";
 import 'semantic-ui-css/semantic.min.css'
+import 'react-notifications/lib/notifications.css';
 import './index.css';
 
 

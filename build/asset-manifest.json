@@ -1,7 +1,7 @@
 {
   "main.css": "/victory/static/css/main.465c6fa0.chunk.css",
-  "main.js": "/victory/static/js/main.ed61bf7c.chunk.js",
-  "main.js.map": "/victory/static/js/main.ed61bf7c.chunk.js.map",
+  "main.js": "/victory/static/js/main.4d000e79.chunk.js",
+  "main.js.map": "/victory/static/js/main.4d000e79.chunk.js.map",
   "static/css/1.cf08692c.chunk.css": "/victory/static/css/1.cf08692c.chunk.css",
   "static/js/1.a2152eb6.chunk.js": "/victory/static/js/1.a2152eb6.chunk.js",
   "static/js/1.a2152eb6.chunk.js.map": "/victory/static/js/1.a2152eb6.chunk.js.map",
@@ -9,9 +9,9 @@
   "runtime~main.js.map": "/victory/static/js/runtime~main.c592824c.js.map",
   "static/media/semantic.min.css": "/victory/static/media/brand-icons.a1a749e8.svg",
   "static/media/logo.png": "/victory/static/media/logo.22c656b0.png",
-  "static/css/main.465c6fa0.chunk.css.map": "/victory/static/css/main.465c6fa0.chunk.css.map",
   "static/css/1.cf08692c.chunk.css.map": "/victory/static/css/1.cf08692c.chunk.css.map",
+  "static/css/main.465c6fa0.chunk.css.map": "/victory/static/css/main.465c6fa0.chunk.css.map",
   "../server/index.html": "/victory/../server/index.html",
-  "precache-manifest.48453c87abb7174909239d11639fe39b.js": "/victory/precache-manifest.48453c87abb7174909239d11639fe39b.js",
+  "precache-manifest.dd0099c311153acf2557de972544b24f.js": "/victory/precache-manifest.dd0099c311153acf2557de972544b24f.js",
   "service-worker.js": "/victory/service-worker.js"
 }

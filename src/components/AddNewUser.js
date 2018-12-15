@@ -216,7 +216,7 @@ export default class AddNewUser extends React.Component {
               }
             })
           });
-          fetch("http://ohack.herokuapp.com/v1/victoryfoundation/users",
+          fetch("https://ohack.herokuapp.com/v1/victoryfoundation/users",
             {
               method: 'POST',
               headers: {

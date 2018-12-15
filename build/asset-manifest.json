@@ -9,10 +9,10 @@
   "runtime~main.js.map": "/victory/static/js/runtime~main.c592824c.js.map",
   "static/media/notifications.css": "/victory/static/media/notification.5bee74ca.svg",
   "static/media/logo.png": "/victory/static/media/logo.22c656b0.png",
-  "static/media/semantic.min.css": "/victory/static/media/icons.8e3c7f55.eot",
-  "static/css/1.a834a431.chunk.css.map": "/victory/static/css/1.a834a431.chunk.css.map",
+  "static/media/semantic.min.css": "/victory/static/media/icons.faff9214.woff",
   "static/css/main.76f7d1cb.chunk.css.map": "/victory/static/css/main.76f7d1cb.chunk.css.map",
+  "static/css/1.a834a431.chunk.css.map": "/victory/static/css/1.a834a431.chunk.css.map",
   "../server/index.html": "/victory/../server/index.html",
-  "precache-manifest.2025b5e40cff90f36980947c95450f5a.js": "/victory/precache-manifest.2025b5e40cff90f36980947c95450f5a.js",
+  "precache-manifest.cb832376fa5a8fcb056d9484013b78b1.js": "/victory/precache-manifest.cb832376fa5a8fcb056d9484013b78b1.js",
   "service-worker.js": "/victory/service-worker.js"
 }

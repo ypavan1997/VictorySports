@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import DatePicker from "react-datepicker/es/index";
-
 import "react-datepicker/dist/react-datepicker.css";
+import Grid from "semantic-ui-react/dist/es/collections/Grid/Grid";
+import Segment from "semantic-ui-react/dist/es/elements/Segment/Segment";
+import Form from "semantic-ui-react/dist/es/collections/Form/Form";
 
 const styles = theme => ({
     root: {
@@ -24,9 +26,9 @@ const styles = theme => ({
 class LandingPage extends React.Component {
 
     constructor(props) {
-        super(props)
-        this.handleDateChange = this.handleDateChange.bind(this);
+        super(props);
         this.handleDateChange(this.getYesterDay());
+        this.handleDateChange = this.handleDateChange.bind(this);
     }
 
     handleDateChange(date) {
@@ -42,21 +44,30 @@ class LandingPage extends React.Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { startDate } = this.props;
 
         return (
-            <div className={classes.root}>
-                <DatePicker
-                    placeholderText="Click to select a date"
-                    maxDate={new Date()}
-                    showDisabledMonthNavigation
-                    showMonthDropdown
-                    showYearDropdown
-                    dropdownMode="select"
-                    dateFormat="dd/MM/yyyy"
-                    onChange={this.handleDateChange}
-                />
-            </div>
+            <Form>
+                <Grid doubling >
+                    <React.Fragment>
+                        <Grid.Row centered>
+                            <Grid.Column width={10}>
+                                <DatePicker
+                                    selected={startDate}
+                                    placeholderText="Click to select a date"
+                                    maxDate={new Date()}
+                                    showDisabledMonthNavigation
+                                    showMonthDropdown
+                                    showYearDropdown
+                                    dropdownMode="select"
+                                    dateFormat="dd/MM/yyyy"
+                                    onChange={this.handleDateChange}
+                                />
+                            </Grid.Column>
+                        </Grid.Row>
+                    </React.Fragment>
+                </Grid>
+            </Form>
         );
     }
 }

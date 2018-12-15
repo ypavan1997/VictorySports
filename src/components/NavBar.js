@@ -50,7 +50,7 @@ const NavBarMobile = ({
 const NavBarDesktop = ({ leftItems, rightItems, navigate }) => (
   <Menu fixed="top" color={'blue'}>
     <Menu.Item>
-      <Image size="mini" src={logo} onClick={() => navigate(null, {url: ''})}/>
+      <Image size="mini" src={logo} onClick={() => navigate(null, {url: '/'})}/>
     </Menu.Item>
     {_.map(leftItems, item => <Menu.Item {...item} />)}
     <Menu.Menu position="right">

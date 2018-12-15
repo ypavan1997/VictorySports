@@ -1,5 +1,4 @@
 import React from 'react'
-import Container from "semantic-ui-react/dist/es/elements/Container/Container";
 import Button from "semantic-ui-react/dist/es/elements/Button/Button";
 import Table from "semantic-ui-react/dist/es/collections/Table/Table";
 import Checkbox from "semantic-ui-react/dist/es/modules/Checkbox/Checkbox";

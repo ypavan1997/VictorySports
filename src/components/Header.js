@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import Dropdown from "semantic-ui-react/dist/es/modules/Dropdown/Dropdown";
 import NavBar from "./NavBar";
-import Form from "semantic-ui-react/dist/es/collections/Form/Form";
 import Accordion from "semantic-ui-react/dist/es/modules/Accordion/Accordion";
+import Menu from "semantic-ui-react/dist/es/collections/Menu/Menu";
 
 class Header extends Component {
-  state = {showSignInModal: false};
+  state = {showSignInModal: false, visible: false};
+
+  handlePusher = () => {
+    const { visible } = this.state;
+
+    if (visible) this.setState({ visible: false });
+  };
+
+  handleToggle = () => this.setState({ visible: !this.state.visible });
 
   navigate = (e, {url, name, value}) => {
     this.setState({ activeItem: name });
@@ -16,7 +23,8 @@ class Header extends Component {
   };
 
   render() {
-    const { activeItem } = this.state;
+    const { activeItem, visible } = this.state;
+    const { children, history} = this.props;
 
     const leftItemsDesktop = [
       { as:() => <React.Fragment>
@@ -53,18 +61,40 @@ class Header extends Component {
               index={0}
               onClick={this.handleClick}
             />
-            <Accordion.Content active={true} content={[<p>Add A User</p>, <p>User Status</p>]} />
+            <Accordion.Content active={true}>
+              <p onClick={()=> {history.push('user_mgmt'); this.handlePusher()}}>Add A User</p>,
+              <label onClick={()=> {history.push('user_status');  this.handlePusher()}}>User Status</label>
+            </Accordion.Content>
           </Menu.Item>
 
           <Menu.Item>
             <Accordion.Title
               active={true}
-              content='HubManagement'
+              content='Hub Management'
               index={1}
               onClick={this.handleClick}
             />
-            <Accordion.Content active={true} content={[<p>Create Hub</p>, <p>Edit Hub</p>]} />
+            <Accordion.Content active={true}>
+              <p onClick={()=> {history.push('create_hub'); this.handlePusher()}}>Add A Hub</p>,
+              <label onClick={()=> {history.push('edit_hub');  this.handlePusher()}}>Edit Hub</label>
+            </Accordion.Content>
           </Menu.Item>
+
+          <Menu.Item>
+            <Accordion.Title
+              active={true}
+              content='Student Management'
+              index={1}
+              onClick={this.handleClick}
+            />
+            <Accordion.Content active={true}>
+              <p onClick={()=> {history.push('new_std'); this.handlePusher()}}>New Registration</p>,
+              <p onClick={()=> {history.push('edit_std');  this.handlePusher()}}>Edit Registration</p>
+              <label onClick={()=> {history.push('edit_std');  this.handlePusher()}}>Update Status</label>
+            </Accordion.Content>
+          </Menu.Item>
+
+
         </Accordion>}
     ];
     const rightItems = [
@@ -73,10 +103,15 @@ class Header extends Component {
 
     return (
       <React.Fragment>
-        <NavBar leftItemsDesktop={leftItemsDesktop} leftItems={leftItems} rightItems={rightItems}>
-          {this.props.children}
+        <NavBar leftItemsDesktop={leftItemsDesktop}
+                leftItems={leftItems}
+                rightItems={rightItems}
+                visible={visible}
+                handleToggle={this.handleToggle}
+                handlePusher={this.handlePusher}
+        >
+          {children}
         </NavBar>
-
       </React.Fragment>
 
     )

@@ -1,5 +1,8 @@
 import React from 'react'
-import { Form, Input, Message, Modal } from 'semantic-ui-react'
+import Modal from "semantic-ui-react/dist/es/modules/Modal/Modal";
+import Form from "semantic-ui-react/dist/es/collections/Form/Form";
+import Input from "semantic-ui-react/dist/es/elements/Input/Input";
+import Message from "semantic-ui-react/dist/es/collections/Message/Message";
 
 const inlineStyle = {
   modal : {

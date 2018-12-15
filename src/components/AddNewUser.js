@@ -2,7 +2,6 @@ import React from 'react'
 import Form from "semantic-ui-react/dist/es/collections/Form/Form";
 import Segment from "semantic-ui-react/dist/es/elements/Segment/Segment";
 import Grid from "semantic-ui-react/dist/es/collections/Grid/Grid";
-import Container from "semantic-ui-react/dist/es/elements/Container/Container";
 import Label from "semantic-ui-react/dist/es/elements/Label/Label";
 import Button from "semantic-ui-react/dist/es/elements/Button/Button";
 import Dropdown from "semantic-ui-react/dist/es/modules/Dropdown/Dropdown";
@@ -16,21 +15,29 @@ const options = [
 
 export default class AddNewUser extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.handleDateChange = this.handleDateChange.bind(this)
+  }
+
   state = { activeItem: 'Add New User' };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+  handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleUserRoleChange = (event, props) => {
     this.setState({user_role: props.value})
   };
 
-  handleChange(date) {
+  handleDateChange(date) {
     this.setState({
       startDate: date
     });
   }
 
   render() {
+    const {name, username, password, retype_password, user_role} = this.state;
+
     return <React.Fragment>
       <Segment>
         <Label  size={'medium'} color={'blue'} attached='top'>New User Details</Label>
@@ -42,7 +49,7 @@ export default class AddNewUser extends React.Component {
               </Grid.Column>
               <Grid.Column mobile={10}>
                 <Form.Field>
-                  <Form.Input fluid placeholder="Name" />
+                  <Form.Input name={'name'} value={name} fluid placeholder="Name" onChange={this.handleChange}/>
                 </Form.Field>
               </Grid.Column>
             </Grid.Row>
@@ -52,7 +59,7 @@ export default class AddNewUser extends React.Component {
               </Grid.Column>
               <Grid.Column mobile={10}>
                 <Form.Field>
-                  <Form.Input fluid placeholder="Username" />
+                  <Form.Input name={'username'} value={username} fluid placeholder="Username" onChange={this.handleChange}/>
                 </Form.Field>
               </Grid.Column>
             </Grid.Row>
@@ -62,7 +69,7 @@ export default class AddNewUser extends React.Component {
               </Grid.Column>
               <Grid.Column mobile={10}>
                 <Form.Field>
-                  <Form.Input type={'password'} fluid placeholder="Password" />
+                  <Form.Input type={'password'} name={'password'} value={password} fluid placeholder="Password" onChange={this.handleChange}/>
                 </Form.Field>
               </Grid.Column>
 
@@ -74,7 +81,7 @@ export default class AddNewUser extends React.Component {
             </Grid.Column>
             <Grid.Column mobile={10}>
               <Form.Field>
-                <Form.Input type={'password'} fluid placeholder="Retype Password" />
+                <Form.Input type={'password'} name={'retype_password'} value={retype_password} fluid placeholder="Retype Password" onChange={this.handleChange}/>
               </Form.Field>
             </Grid.Column>
 
@@ -85,7 +92,7 @@ export default class AddNewUser extends React.Component {
             </Grid.Column>
             <Grid.Column mobile={10}>
             <Form.Field>
-                <Form.Select options={options} placeholder='Role' onChange={this.handleUserRoleChange} fluid/>
+                <Form.Select options={options} name={'role'} value={user_role} placeholder='Role' onChange={this.handleUserRoleChange} fluid/>
             </Form.Field>
             </Grid.Column>
           </Grid.Row>
@@ -151,7 +158,7 @@ export default class AddNewUser extends React.Component {
                     showYearDropdown
                     dropdownMode="select"
                     dateFormat="dd/MM/yyyy"
-                    onChange={this.handleChange}
+                    onChange={this.handleDateChange}
                   />
 
                 </Grid.Column>
@@ -183,9 +190,6 @@ export default class AddNewUser extends React.Component {
 
               </Grid.Row>
             </React.Fragment>
-
-
-
 
                }
         </Grid>

@@ -1,14 +1,12 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { render } from "react-dom";
-import {
-  Container,
-  Icon,
-  Image,
-  Menu,
-  Sidebar,
-  Responsive
-} from "semantic-ui-react";
+import logo from '../logo.png'
+import Sidebar from "semantic-ui-react/dist/es/modules/Sidebar/Sidebar";
+import Menu from "semantic-ui-react/dist/es/collections/Menu/Menu";
+import Icon from "semantic-ui-react/dist/es/elements/Icon/Icon";
+import Image from "semantic-ui-react/dist/es/elements/Image/Image";
+import Container from "semantic-ui-react/dist/es/elements/Container/Container";
+import Responsive from "semantic-ui-react/dist/es/addons/Responsive/Responsive";
 
 const NavBarMobile = ({
                         children,
@@ -34,7 +32,7 @@ const NavBarMobile = ({
     >
       <Menu fixed="top" color={'blue'}>
         <Menu.Item>
-          <Image size="mini" src="https://react.semantic-ui.com/logo.png" />
+          <Image size="mini" src={logo} />
         </Menu.Item>
         <Menu.Item onClick={onToggle}>
           <Icon name="sidebar" />
@@ -51,7 +49,7 @@ const NavBarMobile = ({
 const NavBarDesktop = ({ leftItems, rightItems }) => (
   <Menu fixed="top" color={'blue'}>
     <Menu.Item>
-      <Image size="mini" src="https://react.semantic-ui.com/logo.png" />
+      <Image size="mini" src={logo} />
     </Menu.Item>
     {_.map(leftItems, item => <Menu.Item {...item} />)}
     <Menu.Menu position="right">
@@ -65,29 +63,16 @@ const NavBarChildren = ({ children }) => (
 );
 
 export default class NavBar extends Component {
-  state = {
-    visible: false
-  };
-
-  handlePusher = () => {
-    const { visible } = this.state;
-
-    if (visible) this.setState({ visible: false });
-  };
-
-  handleToggle = () => this.setState({ visible: !this.state.visible });
-
   render() {
-    const { children, leftItems, rightItems, leftItemsDesktop } = this.props;
-    const { visible } = this.state;
+    const { children, leftItems, rightItems, leftItemsDesktop, visible, handlePusher, handleToggle } = this.props;
 
     return (
-      <div>
+      <React.Fragment>
         <Responsive {...Responsive.onlyMobile}>
           <NavBarMobile
             leftItems={leftItems}
-            onPusherClick={this.handlePusher}
-            onToggle={this.handleToggle}
+            onPusherClick={handlePusher}
+            onToggle={handleToggle}
             rightItems={rightItems}
             visible={visible}
           >
@@ -98,7 +83,7 @@ export default class NavBar extends Component {
           <NavBarDesktop leftItems={leftItemsDesktop} rightItems={rightItems} />
           <NavBarChildren>{children}</NavBarChildren>
         </Responsive>
-      </div>
+      </React.Fragment>
     );
   }
 }

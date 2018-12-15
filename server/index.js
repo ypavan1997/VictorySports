@@ -92,7 +92,7 @@ app.get('/auth/google',
 );
 
 
-app.listen(port, function (err) {
+app.listen(process.env.PORT || port, function (err) {
   if (err) {
     console.error(err.message);
   } else {

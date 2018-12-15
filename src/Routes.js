@@ -6,6 +6,8 @@ import CreateHub from "./components/CreateHub";
 import HubActivityTracker from "./components/HubActivityTracker";
 import NoMatch from "./components/NoMatch";
 import NewStudent from "./components/NewStudent";
+import LandingPage from "./components/LandingPage";
+
 
 export const Routes = () => {
   return <Switch>
@@ -14,6 +16,7 @@ export const Routes = () => {
     <Route path='/create_hub' component={CreateHub}/>
     <Route path={'/new_std'} component={NewStudent}/>
     <Route path='/hub_activity_tracker' component={HubActivityTracker}/>
+      <Route path='/' component={LandingPage}/>
     <Route component={NoMatch} />
   </Switch>;
 };

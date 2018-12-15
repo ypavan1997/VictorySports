@@ -18,3 +18,10 @@ export const addUser = (user) => {
         user
     }
 };
+
+export const addUserRole = (userRole) => {
+    return {
+        type: 'ADD_USER_ROLE',
+        userRole
+    }
+};

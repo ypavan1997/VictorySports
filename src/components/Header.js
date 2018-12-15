@@ -51,6 +51,9 @@ class Header extends Component {
           <Dropdown.Item onClick={this.navigate} value={'std_status'}>Update Status</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
+              <Menu.Item name='hub-activity-tracker' value={'hub_activity_tracker'} onClick={this.navigate}>
+                  Hub Activity Tracker
+              </Menu.Item>
         </React.Fragment>}
     ];
 

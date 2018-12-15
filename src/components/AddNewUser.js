@@ -7,10 +7,11 @@ import Button from "semantic-ui-react/dist/es/elements/Button/Button";
 import Dropdown from "semantic-ui-react/dist/es/modules/Dropdown/Dropdown";
 import DatePicker from "react-datepicker/es/index";
 import TextArea from "semantic-ui-react/dist/es/addons/TextArea/TextArea";
+import {createNotification} from "../utils/utils";
 
 const options = [
-  {key: 'a', value: 'admin', text: 'Admin'},
-  {key: 'c', value: 'coach', text: 'Coach'}
+  {key: 'a', value: 1, text: 'Admin'},
+  {key: 'c', value: 11, text: 'Coach'}
 ];
 
 export default class AddNewUser extends React.Component {
@@ -20,13 +21,17 @@ export default class AddNewUser extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this)
   }
 
-  state = { activeItem: 'Add New User' };
+  state = { activeItem: 'Add New User' , isLoading: false};
 
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleUserRoleChange = (event, props) => {
     this.setState({user_role: props.value})
+  };
+
+  handleSportChange = (event, props) => {
+    this.setState({sport: props.value})
   };
 
   handleDateChange(date) {
@@ -36,12 +41,12 @@ export default class AddNewUser extends React.Component {
   }
 
   render() {
-    const {name, username, password, retype_password, user_role} = this.state;
+    const {name, username, user_role, address, pincode, mobile, startDate, education, sport, about, isLoading} = this.state;
 
     return <React.Fragment>
       <Segment>
         <Label  size={'medium'} color={'blue'} attached='top'>New User Details</Label>
-        <Form>
+        <Form loading={isLoading}>
         <Grid doubling >
             <Grid.Row>
               <Grid.Column textAlign={'left'} mobile={6}>
@@ -63,29 +68,7 @@ export default class AddNewUser extends React.Component {
                 </Form.Field>
               </Grid.Column>
             </Grid.Row>
-            <Grid.Row>
-              <Grid.Column mobile={6} textAlign={'left'}>
-                <label className={'Admin-Form-Label'}>Password </label>
-              </Grid.Column>
-              <Grid.Column mobile={10}>
-                <Form.Field>
-                  <Form.Input type={'password'} name={'password'} value={password} fluid placeholder="Password" onChange={this.handleChange}/>
-                </Form.Field>
-              </Grid.Column>
 
-            </Grid.Row>
-
-          <Grid.Row>
-            <Grid.Column mobile={6} textAlign={'left'}>
-              <label className={'Admin-Form-Label'}>Retype Password </label>
-            </Grid.Column>
-            <Grid.Column mobile={10}>
-              <Form.Field>
-                <Form.Input type={'password'} name={'retype_password'} value={retype_password} fluid placeholder="Retype Password" onChange={this.handleChange}/>
-              </Form.Field>
-            </Grid.Column>
-
-          </Grid.Row>
           <Grid.Row>
             <Grid.Column mobile={6} textAlign={'left'}>
               <label className={'Admin-Form-Label'}>Role</label>
@@ -97,25 +80,15 @@ export default class AddNewUser extends React.Component {
             </Grid.Column>
           </Grid.Row>
 
-          { this.state.user_role === 'coach' &&
+          { this.state.user_role === 11 &&
             <React.Fragment>
-              <Grid.Row centered>
-                <Grid.Column width={6}>
-                  <label className={'Admin-Form-Label'}>Name </label>
-                </Grid.Column>
-                <Grid.Column width={10}>
-                  <Form.Field>
-                    <Form.Input fluid placeholder="Name" />
-                  </Form.Field>
-                </Grid.Column>
-              </Grid.Row>
               <Grid.Row centered>
                 <Grid.Column width={6}>
                   <label className={'Admin-Form-Label'}>Address </label>
                 </Grid.Column>
                 <Grid.Column width={10}>
                   <Form.Field>
-                    <TextArea placeholder='Address' style={{ minHeight: 100 }} />
+                    <TextArea name={'address'} value={address} placeholder='Address' style={{ minHeight: 100 }} onChange={this.handleUserRoleChange}/>
                   </Form.Field>
                 </Grid.Column>
               </Grid.Row>
@@ -125,7 +98,7 @@ export default class AddNewUser extends React.Component {
                 </Grid.Column>
                 <Grid.Column width={10}>
                   <Form.Field>
-                    <Form.Input fluid placeholder="Pincode" />
+                    <Form.Input fluid name={'pincode'} value={pincode} placeholder="Pincode" onChange={this.handleUserRoleChange}/>
                   </Form.Field>
                 </Grid.Column>
 
@@ -137,7 +110,7 @@ export default class AddNewUser extends React.Component {
                 </Grid.Column>
                 <Grid.Column width={10}>
                   <Form.Field>
-                    <Form.Input fluid placeholder="Mobile" />
+                    <Form.Input name={'mobile'} value={mobile} fluid placeholder="Mobile" onChange={this.handleUserRoleChange}/>
                   </Form.Field>
                 </Grid.Column>
 
@@ -150,7 +123,7 @@ export default class AddNewUser extends React.Component {
                 <Grid.Column width={10}>
 
                   <DatePicker
-                    selected={this.state.startDate}
+                    selected={startDate}
                     placeholderText="Click to select a date of birth"
                     maxDate={new Date()}
                     showDisabledMonthNavigation
@@ -171,7 +144,7 @@ export default class AddNewUser extends React.Component {
                 </Grid.Column>
                 <Grid.Column width={10}>
                   <Form.Field>
-                    <Dropdown placeholder='Education' fluid multiple selection options={[]} />
+                    <Form.Input placeholder='Education' fluid name={'education'} value={education} />
                   </Form.Field>
                 </Grid.Column>
 
@@ -183,21 +156,166 @@ export default class AddNewUser extends React.Component {
                 </Grid.Column>
                 <Grid.Column width={10}>
                   <Form.Field>
-                    <Dropdown placeholder='Sport(s)' fluid multiple selection options={[{key: 'a', text: 'Football' ,value: 'football'},
-                      {key: 'b', text: 'Boxing', value: 'boxing'}]} />
+                    <Dropdown placeholder='Sport(s)' value={sport} fluid selection options={[{key: 'a', text: 'Football' ,value: 1},
+                      {key: 'b', text: 'Boxing', value: 2}]} onChange={this.handleSportChange}/>
                   </Form.Field>
                 </Grid.Column>
-
               </Grid.Row>
+              <Grid.Row centered>
+              <Grid.Column width={6}>
+                <label className={'Admin-Form-Label'}>About </label>
+              </Grid.Column>
+              <Grid.Column width={10}>
+                <Form.Field>
+                  <TextArea name={'about'} value={about} placeholder='About' style={{ minHeight: 100 }} onChange={this.handleChange}/>
+                </Form.Field>
+              </Grid.Column>
+            </Grid.Row>
+
             </React.Fragment>
 
                }
         </Grid>
         </Form>
         <br/>
-        {this.state.user_role === 'coach' && <Button primary content={'Add New Coach'}/> }
-        {this.state.user_role === 'admin' && <Button primary content={'Add New Admin'}/> }
-        {!this.state.user_role && <Button disabled content={'Add New User'}/> }
+        {this.state.user_role === 11 && <Button primary content={'Add New Coach'} onClick={()=> {
+          this.setState({isLoading: true})
+          console.log({
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              username: username,
+              name: name,
+              role: {
+                id: user_role
+              }
+            })
+          });
+          fetch("https://ohack.herokuapp.com/v1/victoryfoundation/users",
+            {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                username: username,
+                name: name,
+                about: about,
+                address: address,
+                experience: education,
+                sport: {
+                  id: sport
+                },
+                role: {
+                  id: user_role
+                }
+              })
+            })
+            .then(res => res.json())
+            .then(
+
+              (result) => {
+                const {status} = result;
+                if (status < 400) {
+                  this.setState({
+                    isLoaded: true,
+                    isLoading: false,
+                    result: result
+                  });
+                  createNotification('success', 'Coach Added')
+                } else {
+                  this.setState({
+                    isLoaded: true,
+                    isLoading: false,
+                    error: result
+                  });
+                  createNotification('error', 'Could not add coach, please try again')
+                }
+              },
+              // Note: it's important to handle errors here
+              // instead of a catch() block so that we don't swallow
+              // exceptions from actual bugs in components.
+              (error) => {
+                createNotification('error', 'Could not add coach, please try again');
+                this.setState({
+                  isLoaded: true,
+                  isLoading: false,
+                  error
+                });
+              }
+            )
+        }}/> }
+        {this.state.user_role === 1 && <Button disabled={isLoading} primary content={'Add New Admin'} onClick={()=> {
+          this.setState({isLoading: true})
+          console.log({
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              username: username,
+              name: name,
+              role: {
+                id: user_role
+              }
+            })
+          });
+          fetch("https://ohack.herokuapp.com/v1/victoryfoundation/users",
+            {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                username: username,
+                name: name,
+                role: {
+                  id: user_role
+                }
+              })
+            })
+            .then(res => res.json())
+            .then(
+
+              (result) => {
+                const {status} = result;
+                if (status < 400) {
+                  this.setState({
+                    isLoaded: true,
+                    isLoading: false,
+                    result: result
+                  });
+                  createNotification('success', 'Admin User Added')
+                } else {
+                  this.setState({
+                    isLoaded: true,
+                    isLoading: false,
+                    error: result
+                  });
+                  createNotification('error')
+                }
+              },
+              // Note: it's important to handle errors here
+              // instead of a catch() block so that we don't swallow
+              // exceptions from actual bugs in components.
+              (error) => {
+                console.log('here')
+                createNotification('error')
+                this.setState({
+                  isLoaded: true,
+                  isLoading: false,
+                  error
+                });
+              }
+            )
+        }}/> }
+        {!this.state.user_role && <Button disabled content={'Add New User'} onClick={()=> console.log(this.state)}/> }
       </Segment>
     </React.Fragment>
   }

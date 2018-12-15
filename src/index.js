@@ -14,6 +14,7 @@ import userReducer from "./redux/reducers/userReducer";
 import activityTrackerReducer from "./redux/reducers/activityTrackerReducer";
 import {addUser} from "./redux/actions/ModalActions";
 import 'semantic-ui-css/semantic.min.css'
+import 'react-notifications/lib/notifications.css';
 import './index.css';
 
 
@@ -38,9 +39,9 @@ export const store = createStore(
   applyMiddleware(...middleWares)
 );
 
-/*fetch('/api/current_user')
+fetch('/api/current_user')
     .then(response => response.json())
-    .then(data => { store.dispatch(addUser(data));});*/
+    .then(data => { store.dispatch(addUser(data));});
 
 ReactDOM.render((
   <Provider store={store} key='provider'>

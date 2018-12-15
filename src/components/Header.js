@@ -99,6 +99,17 @@ class Header extends Component {
             </Accordion.Content>
           </Menu.Item>
 
+          <Menu.Item>
+            <Accordion.Title
+              active={true}
+              content='Activity Tracker'
+              index={1}
+              onClick={this.handleClick}
+            />
+            <Accordion.Content active={true}>
+              <p onClick={()=> {history.push('hub_activity_tracker'); this.handlePusher()}}>Start Activity</p>,
+            </Accordion.Content>
+          </Menu.Item>
 
         </Accordion>}
     ];

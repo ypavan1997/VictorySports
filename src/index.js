@@ -12,7 +12,9 @@ import { logger } from 'redux-logger';
 import modalReducer from "./redux/reducers/modalReducer";
 import userReducer from "./redux/reducers/userReducer";
 import {addUser, addUserRole} from "./redux/actions/ModalActions";
+import activityTrackerReducer from "./redux/reducers/activityTrackerReducer";
 import 'semantic-ui-css/semantic.min.css'
+import 'react-notifications/lib/notifications.css';
 import './index.css';
 
 
@@ -29,7 +31,8 @@ const middleWares = [
 
 const rootReducer = combineReducers({
   modal: modalReducer,
-  user: userReducer
+  user: userReducer,
+  activityTracker: activityTrackerReducer
 });
 export const store = createStore(
   connectRouter(history)(rootReducer),

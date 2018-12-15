@@ -45,6 +45,10 @@ class Header extends Component {
           </Dropdown.Menu>
         </Dropdown>
 
+        <Menu.Item name='hub-activity-tracker' value={'hub_activity_tracker'} onClick={this.navigate}>
+            Hub Activity Tracker
+          </Menu.Item>
+
         <Menu.Menu position={'right'}>
           <Menu.Item name='sign-in' active={activeItem === 'sign-in'} onClick={() => this.props.showModal('SIGN_IN_MODAL')}>
             Sign-in

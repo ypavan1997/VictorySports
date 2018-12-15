@@ -11,6 +11,9 @@ import { routerMiddleware, connectRouter } from 'connected-react-router'
 import { ConnectedRouter } from 'connected-react-router'
 import { logger } from 'redux-logger';
 import modalReducer from "./redux/reducers/modalReducer";
+import userReducer from "./redux/reducers/userReducer";
+import {addUser} from "./redux/actions/ModalActions";
+
 
 const history = createBrowserHistory({
   basename: '/victory',
@@ -25,11 +28,16 @@ const middleWares = [
 
 const rootReducer = combineReducers({
   modal: modalReducer,
+  user: userReducer
 });
 export const store = createStore(
   connectRouter(history)(rootReducer),
   applyMiddleware(...middleWares)
 );
+
+fetch('/api/current_user')
+    .then(response => response.json())
+    .then(data => { store.dispatch(addUser(data));});
 
 ReactDOM.render((
   <Provider store={store} key='provider'>

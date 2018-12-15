@@ -1,13 +1,56 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const cookieSession = require('cookie-session');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const keys = require('../config/keys');
 const port = 9000;
 
 
 const app = express();
+app.use(
+    cookieSession({
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        keys: [keys.cookieKey]
+    })
+);
+
+passport.use(
+    new GoogleStrategy(
+        {
+            clientID: keys.googleClientID,
+            clientSecret: keys.googleClientSecret,
+            callbackURL: '/auth/google/callback',
+            proxy: true
+        },
+        (accessToken, refreshToken, profile, done) => {
+            const user = {
+                googleId: profile.id,
+                displayName: profile.displayName,
+                name: profile.name,
+                emails: profile.emails,
+                photos: profile.photos
+            };
+            done(null, user);
+        }
+    )
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+    done(null, user);
+});
+
 
 app.use(helmet());
 
@@ -17,13 +60,37 @@ app.use(cors());
 
 app.use(morgan('combined'));
 
-app.post('/login', (req, res) => {
-  res.status(200).send();
+app.use('/victory', express.static('build'));
+
+app.engine('html', require('ejs').renderFile);
+
+app.get('/', (req, res) => {
+    if(req.user) {
+        res.render(__dirname + '/index.html');
+    } else {
+        res.redirect('/auth/google');
+    }
 });
 
-app.get('*', (req, res) => {
-  res.render(path.join(__dirname, '../public', 'index.html'));
+app.get('/api/current_user', (req, res) => {
+    if(req.user) {
+        res.send(req.user);
+    }
 });
+
+app.get('/auth/google/callback', passport.authenticate('google'),(err, req, res, next) => {
+        console.log('req',err);
+    } ,
+    (req, res) => {
+        res.redirect('/');
+    });
+
+app.get('/auth/google',
+    passport.authenticate('google', {
+        scope: ['profile', 'email']
+    })
+);
+
 
 app.listen(port, function (err) {
   if (err) {

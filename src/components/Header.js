@@ -4,6 +4,8 @@ import Dropdown from "semantic-ui-react/dist/es/modules/Dropdown/Dropdown";
 import NavBar from "./NavBar";
 import Accordion from "semantic-ui-react/dist/es/modules/Accordion/Accordion";
 import Menu from "semantic-ui-react/dist/es/collections/Menu/Menu";
+import logo from "../logo.png";
+import Image from "semantic-ui-react/dist/es/elements/Image/Image";
 
 class Header extends Component {
   state = {showSignInModal: false, visible: false};
@@ -98,7 +100,10 @@ class Header extends Component {
         </Accordion>}
     ];
     const rightItems = [
-      { as: "a", content: "Login", key: "login", onClick: () => this.props.showModal('SIGN_IN_MODAL')}
+        { as:() =>  <Menu.Item>
+            <Image src={this.props.user && this.props.user.user && this.props.user.user.photos[0].value} avatar/>
+        </Menu.Item>
+        }
     ];
 
     return (

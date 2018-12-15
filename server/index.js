@@ -103,5 +103,5 @@ app.listen(process.env.PORT || port, function (err) {
 });
 
 function setCustomCacheControl (res, path) {
-    res.setHeader('Content-Type', 'express.static.mime.lookup(path)')
+    res.setHeader('Content-Type', express.static.mime.lookup(path));
 }

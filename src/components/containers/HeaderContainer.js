@@ -8,8 +8,14 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
 
 export default connect(
-  null,
+    mapStateToProps,
   mapDispatchToProps
 )(Header)

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { applyMiddleware, createStore, combineReducers } from 'redux';
@@ -11,6 +10,11 @@ import { routerMiddleware, connectRouter } from 'connected-react-router'
 import { ConnectedRouter } from 'connected-react-router'
 import { logger } from 'redux-logger';
 import modalReducer from "./redux/reducers/modalReducer";
+import userReducer from "./redux/reducers/userReducer";
+import {addUser} from "./redux/actions/ModalActions";
+import 'semantic-ui-css/semantic.min.css'
+import './index.css';
+
 
 const history = createBrowserHistory({
   basename: '/victory',
@@ -25,11 +29,16 @@ const middleWares = [
 
 const rootReducer = combineReducers({
   modal: modalReducer,
+  user: userReducer
 });
 export const store = createStore(
   connectRouter(history)(rootReducer),
   applyMiddleware(...middleWares)
 );
+
+fetch('/api/current_user')
+    .then(response => response.json())
+    .then(data => { store.dispatch(addUser(data));});
 
 ReactDOM.render((
   <Provider store={store} key='provider'>

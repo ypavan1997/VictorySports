@@ -1,10 +1,4 @@
 import React from 'react'
-import Form from "semantic-ui-react/dist/es/collections/Form/Form";
-import Segment from "semantic-ui-react/dist/es/elements/Segment/Segment";
-import Grid from "semantic-ui-react/dist/es/collections/Grid/Grid";
-import Container from "semantic-ui-react/dist/es/elements/Container/Container";
-import Label from "semantic-ui-react/dist/es/elements/Label/Label";
-import DatePicker from "react-datepicker";
 import Button from "semantic-ui-react/dist/es/elements/Button/Button";
 import Table from "semantic-ui-react/dist/es/collections/Table/Table";
 import Checkbox from "semantic-ui-react/dist/es/modules/Checkbox/Checkbox";
@@ -15,8 +9,8 @@ export default class UserStatus extends React.Component {
 
 
   render() {
-    return <Container>
-      <Table celled padded>
+    return <React.Fragment>
+      <Table celled padded unstackable>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Name</Table.HeaderCell>
@@ -65,7 +59,7 @@ export default class UserStatus extends React.Component {
         </Table.Footer>
       </Table>
 
-    </Container>
+    </React.Fragment>
   }
 
 }

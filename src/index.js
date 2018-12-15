@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { applyMiddleware, createStore, combineReducers } from 'redux';
@@ -13,6 +12,8 @@ import { logger } from 'redux-logger';
 import modalReducer from "./redux/reducers/modalReducer";
 import userReducer from "./redux/reducers/userReducer";
 import {addUser} from "./redux/actions/ModalActions";
+import 'semantic-ui-css/semantic.min.css'
+import './index.css';
 
 
 const history = createBrowserHistory({

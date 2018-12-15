@@ -18,6 +18,10 @@
   color: white;
 }
 
+.ui.page.modals.transition.visible {
+    display: flex !important;
+}
+
 .react-datepicker-wrapper {
     display: unset;
 }

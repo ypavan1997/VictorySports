@@ -1,10 +1,13 @@
 import HeaderContainer from "./containers/HeaderContainer";
 import React from 'react'
 import ModalRoot from "./containers/ModalRoot";
+import {Routes} from "../Routes";
 
 export const Layout = ({children}) =>
   <React.Fragment>
-    <HeaderContainer/>
+    <HeaderContainer>
+      <Routes/>
+    </HeaderContainer>
     <ModalRoot/>
     <div className="layout-component">
       { children }

@@ -1,5 +1,16 @@
 import React from 'react'
-import { Form, Input, Message, Modal } from 'semantic-ui-react'
+import Modal from "semantic-ui-react/dist/es/modules/Modal/Modal";
+import Form from "semantic-ui-react/dist/es/collections/Form/Form";
+import Input from "semantic-ui-react/dist/es/elements/Input/Input";
+import Message from "semantic-ui-react/dist/es/collections/Message/Message";
+
+const inlineStyle = {
+  modal : {
+    marginTop: '0px !important',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  }
+};
 
 export default class SignInModal extends React.Component {
 
@@ -33,7 +44,7 @@ export default class SignInModal extends React.Component {
     const { username, pwd, username_error, pwd_error, is_loading} = this.state;
 
     return (
-      <Modal closeIcon open={show} onClose={this.onModalClose}>
+      <Modal closeIcon centered style={inlineStyle.modal}  open={show} onClose={this.onModalClose}>
         <Modal.Header icon='archive'>Sign In</Modal.Header>
         <Modal.Content>
           <Form widths={'equal'} size={'large'} error loading={is_loading}>

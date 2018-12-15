@@ -10,7 +10,7 @@ export default class CheckIn extends Component {
     }
 
     getHubs() {
-        return [{ key: 'hub1', value: 'hub1', text: 'Hub1' },
+        return [{ key: 'hub1', value: 1, text: 'Hub1' },
             { key: 'hub2', value: 'hub2', text: 'Hub2' },
             { key: 'hub2', value: 'hub2', text: 'Hub2' }];
     }
@@ -25,7 +25,7 @@ export default class CheckIn extends Component {
     render() {
         return <Form>
             <Form.Field>
-            <Select placeholder='Select your hub' options={this.getHubs()}/>
+            <Select name={'hub'} value={this.props.value.hub} placeholder='Select your hub' options={this.getHubs()} onChange={this.props.onCheckInChange}/>
             </Form.Field>
             <Form.Field>
             <Card centered>

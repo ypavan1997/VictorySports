@@ -75,9 +75,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/current_user', (req, res) => {
-    if(req.user) {
-        res.send(req.user);
-    }
+    res.send(req.user);
 });
 
 app.get('/auth/google/callback', passport.authenticate('google'),(err, req, res, next) => {

@@ -7,6 +7,7 @@ import Icon from "semantic-ui-react/dist/es/elements/Icon/Icon";
 import Image from "semantic-ui-react/dist/es/elements/Image/Image";
 import Container from "semantic-ui-react/dist/es/elements/Container/Container";
 import Responsive from "semantic-ui-react/dist/es/addons/Responsive/Responsive";
+import Dropdown from "semantic-ui-react/dist/es/modules/Dropdown/Dropdown";
 
 const NavBarMobile = ({
                         children,
@@ -46,10 +47,10 @@ const NavBarMobile = ({
   </Sidebar.Pushable>
 );
 
-const NavBarDesktop = ({ leftItems, rightItems }) => (
+const NavBarDesktop = ({ leftItems, rightItems, navigate }) => (
   <Menu fixed="top" color={'blue'}>
     <Menu.Item>
-      <Image size="mini" src={logo} />
+      <Image size="mini" src={logo} onClick={() => navigate(null, {url: ''})}/>
     </Menu.Item>
     {_.map(leftItems, item => <Menu.Item {...item} />)}
     <Menu.Menu position="right">
@@ -64,7 +65,7 @@ const NavBarChildren = ({ children }) => (
 
 export default class NavBar extends Component {
   render() {
-    const { children, leftItems, rightItems, leftItemsDesktop, visible, handlePusher, handleToggle } = this.props;
+    const { children, leftItems, rightItems, leftItemsDesktop, visible, handlePusher, handleToggle, navigate} = this.props;
 
     return (
       <React.Fragment>
@@ -80,7 +81,7 @@ export default class NavBar extends Component {
           </NavBarMobile>
         </Responsive>
         <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-          <NavBarDesktop leftItems={leftItemsDesktop} rightItems={rightItems} />
+          <NavBarDesktop leftItems={leftItemsDesktop} rightItems={rightItems} navigate={navigate}/>
           <NavBarChildren>{children}</NavBarChildren>
         </Responsive>
       </React.Fragment>

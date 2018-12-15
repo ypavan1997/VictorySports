@@ -128,6 +128,7 @@ class Header extends Component {
                 visible={visible}
                 handleToggle={this.handleToggle}
                 handlePusher={this.handlePusher}
+                navigate = {this.navigate}
         >
           {children}
         </NavBar>

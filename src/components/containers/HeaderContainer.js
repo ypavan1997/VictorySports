@@ -8,14 +8,8 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-function mapStateToProps(state) {
-    return {
-        user: state.data.fetchedData && state.data.fetchedData.userAndPermissions
-    }
-}
-
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  null,
+  mapDispatchToProps
 )(Header)

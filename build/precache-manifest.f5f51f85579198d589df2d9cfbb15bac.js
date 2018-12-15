@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "b87b9ba532ace76ae9f6edfe9f72ded2",
-    "url": "/victory/static/media/icons.b87b9ba5.ttf"
+    "revision": "701ae6abd4719e9c2ada3535a497b341",
+    "url": "/victory/static/media/outline-icons.701ae6ab.eot"
   },
   {
-    "revision": "2a07a8bb9e3f7a15b219",
+    "revision": "8c811a5fe1d21e6f385b",
     "url": "/victory/static/css/main.442e671a.chunk.css"
   },
   {
@@ -40,16 +40,16 @@ self.__precacheManifest = [
     "url": "/victory/static/media/icons.8e3c7f55.eot"
   },
   {
-    "revision": "701ae6abd4719e9c2ada3535a497b341",
-    "url": "/victory/static/media/outline-icons.701ae6ab.eot"
-  },
-  {
-    "revision": "2a07a8bb9e3f7a15b219",
-    "url": "/victory/static/js/main.2a07a8bb.chunk.js"
-  },
-  {
     "revision": "cd6c777f1945164224dee082abaea03a",
     "url": "/victory/static/media/outline-icons.cd6c777f.woff2"
+  },
+  {
+    "revision": "8c811a5fe1d21e6f385b",
+    "url": "/victory/static/js/main.8c811a5f.chunk.js"
+  },
+  {
+    "revision": "b87b9ba532ace76ae9f6edfe9f72ded2",
+    "url": "/victory/static/media/icons.b87b9ba5.ttf"
   },
   {
     "revision": "ef60a4f6c25ef7f39f2d25a748dbecfe",
@@ -60,24 +60,24 @@ self.__precacheManifest = [
     "url": "/victory/static/media/outline-icons.ad97afd3.ttf"
   },
   {
-    "revision": "962a1bf31c081691065fe333d9fa8105",
-    "url": "/victory/static/media/icons.962a1bf3.svg"
-  },
-  {
     "revision": "82f60bd0b94a1ed68b1e6e309ce2e8c3",
     "url": "/victory/static/media/outline-icons.82f60bd0.svg"
+  },
+  {
+    "revision": "962a1bf31c081691065fe333d9fa8105",
+    "url": "/victory/static/media/icons.962a1bf3.svg"
   },
   {
     "revision": "e8c322de9658cbeb8a774b6624167c2c",
     "url": "/victory/static/media/brand-icons.e8c322de.woff2"
   },
   {
-    "revision": "a046592bac8f2fd96e994733faf3858c",
-    "url": "/victory/static/media/brand-icons.a046592b.woff"
-  },
-  {
     "revision": "13db00b7a34fee4d819ab7f9838cc428",
     "url": "/victory/static/media/brand-icons.13db00b7.eot"
+  },
+  {
+    "revision": "a046592bac8f2fd96e994733faf3858c",
+    "url": "/victory/static/media/brand-icons.a046592b.woff"
   },
   {
     "revision": "c5ebe0b32dc1b5cc449a76c4204d13bb",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/victory/static/css/1.1580c900.chunk.css"
   },
   {
-    "revision": "1ad41837a0702905c47e4316ecddfb83",
+    "revision": "f3da53e26e86199c30938aaf9d1fc795",
     "url": "/victory/../server/index.html"
   }
 ];

@@ -36,9 +36,9 @@ export const store = createStore(
   applyMiddleware(...middleWares)
 );
 
-fetch('/api/current_user')
+/*fetch('/api/current_user')
     .then(response => response.json())
-    .then(data => { store.dispatch(addUser(data));});
+    .then(data => { store.dispatch(addUser(data));});*/
 
 ReactDOM.render((
   <Provider store={store} key='provider'>

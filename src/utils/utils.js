@@ -1,18 +1,18 @@
 import { NotificationManager} from 'react-notifications';
 
-export const createNotification = (type, message,title, timeout) => {
+export const createNotification = (type, message, timeout) => {
     switch (type) {
       case 'info':
-        NotificationManager.info(message, title, timeout);
+        NotificationManager.info(message, 'Info', timeout);
         break;
       case 'success':
-        NotificationManager.success(message, title, timeout);
+        NotificationManager.success(message, 'Success', timeout);
         break;
       case 'warning':
-        NotificationManager.warning(message, title, timeout);
+        NotificationManager.warning(message, 'Warning', timeout);
         break;
       case 'error':
-        NotificationManager.error(message, title, timeout);
+        NotificationManager.error(message, 'Error', timeout);
         break;
     }
 };

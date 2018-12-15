@@ -60,7 +60,9 @@ app.use(cors());
 
 app.use(morgan('combined'));
 
-app.use('/victory', express.static('build'));
+app.use('/victory', express.static('build', {
+    setHeaders: setCustomCacheControl
+}));
 
 app.engine('html', require('ejs').renderFile);
 
@@ -99,3 +101,7 @@ app.listen(process.env.PORT || port, function (err) {
     console.log('Listening on http://localhost:%d', port);
   }
 });
+
+function setCustomCacheControl (res, path) {
+    res.setHeader('Content-Type', 'express.static.mime.lookup(path)')
+}

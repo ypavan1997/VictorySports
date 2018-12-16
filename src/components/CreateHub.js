@@ -6,6 +6,8 @@ import TextArea from "semantic-ui-react/dist/es/addons/TextArea/TextArea";
 import Grid from "semantic-ui-react/dist/es/collections/Grid/Grid";
 import Segment from "semantic-ui-react/dist/es/elements/Segment/Segment";
 import {createNotification} from "../utils/utils";
+import Header from "semantic-ui-react/dist/es/elements/Header/Header";
+import Icon from "semantic-ui-react/dist/es/elements/Icon/Icon";
 
 const initalState = {
     name: '', username: '', address: ''
@@ -26,8 +28,12 @@ export default class CreateHub extends Component {
       const {name, username, address, isLoading} = this.state;
     return <React.Fragment>
       <Segment>
-        <Label  size={'medium'} color={'blue'} attached='top'>Hub Details</Label>
-      <Grid stackable>
+        <Header as='h3' icon textAlign='center'>
+          <Icon name='hubspot' circular />
+          <Header.Content>Add New Hub</Header.Content>
+        </Header>
+        <br/>
+      <Grid stackable centered>
 
         <Form loading={isLoading}>
           <Grid doubling >

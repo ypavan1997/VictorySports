@@ -8,6 +8,8 @@ import Dropdown from "semantic-ui-react/dist/es/modules/Dropdown/Dropdown";
 import DatePicker from "react-datepicker/es/index";
 import TextArea from "semantic-ui-react/dist/es/addons/TextArea/TextArea";
 import {createNotification} from "../utils/utils";
+import Header from "semantic-ui-react/dist/es/elements/Header/Header";
+import Icon from "semantic-ui-react/dist/es/elements/Icon/Icon";
 
 const COACH_ID = 31;
 const ADMIN_ID = 21;
@@ -51,7 +53,11 @@ export default class AddNewUser extends React.Component {
 
     return <React.Fragment>
       <Segment>
-        <Label  size={'medium'} color={'blue'} attached='top'>New User Details</Label>
+        <Header as='h3' icon textAlign='center'>
+          <Icon name='user outline' circular />
+          <Header.Content>Add New User</Header.Content>
+        </Header>
+        <br/>
         <Form loading={isLoading}>
         <Grid doubling >
             <Grid.Row>

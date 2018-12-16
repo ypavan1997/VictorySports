@@ -8,6 +8,8 @@ import StudentUpload from "./StudentUpload";
 import Tab from "semantic-ui-react/dist/es/modules/Tab/Tab";
 import {createNotification} from "../utils/utils";
 import Loader from "semantic-ui-react/dist/es/elements/Loader/Loader";
+import Header from "semantic-ui-react/dist/es/elements/Header/Header";
+import Icon from "semantic-ui-react/dist/es/elements/Icon/Icon";
 
 export default class NewStudent extends Component {
 
@@ -77,6 +79,11 @@ export default class NewStudent extends Component {
 
     return (
       <React.Fragment>
+        <Header as='h3' icon textAlign='center'>
+          <Icon name='student' circular />
+          <Header.Content>Add New Student</Header.Content>
+        </Header>
+        <br/>
         <Loader active={isLoading} size='large'>Loading</Loader>
         <Tab renderActiveOnly={false} panes={panes} menu={{attached: true, size: 'small', tabular: true }} />
         <Button primary content={'Create Student'} disabled={isLoading}
@@ -104,7 +111,7 @@ export default class NewStudent extends Component {
                   data.append('address', address);
                   data.append('post_office', poNumber)
 
-                  fetch('http://ohack.herokuapp.com/v1/victoryfoundation/student', {
+                  fetch('https://ohack.herokuapp.com/v1/victoryfoundation/student', {
                     method: 'POST',
                     body: data,
                   })

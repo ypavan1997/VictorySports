@@ -24,25 +24,27 @@ class Header extends Component {
   };
 
   render() {
+    const role = this.props.user && this.props.user && this.props.user.userRole && this.props.user.userRole.role && this.props.user.userRole.role.type;
     const { visible } = this.state;
     const { children, history} = this.props;
 
     const leftItemsDesktop = [
       { as:() => <React.Fragment>
-          <Dropdown text='User Management' pointing className='link item'>
+          { role === 'ADMIN' && <Dropdown text='User Management' pointing className='link item'>
           <Dropdown.Menu>
           <Dropdown.Item onClick={this.navigate} value={'/user_mgmt'}>User Management</Dropdown.Item>
       <Dropdown.Item onClick={this.navigate} value={'/user_status'}>User Details</Dropdown.Item>
       </Dropdown.Menu>
-  </Dropdown>
-    <Dropdown text='Hub Management' pointing className='link item'>
-      <Dropdown.Menu>
-        <Dropdown.Item onClick={this.navigate} value={'/create_hub'}>Create Hub</Dropdown.Item>
-        <Dropdown.Item onClick={this.navigate} value={'/edit_hub'}>Edit Hub</Dropdown.Item>
-        <Dropdown.Item onClick={this.navigate} value={'/delete_hub'}>Delete Hub</Dropdown.Item>
-      </Dropdown.Menu>
-      </Dropdown>
-
+  </Dropdown>}
+          { role=== 'ADMIN' &&
+            <Dropdown text='Hub Management' pointing className='link item'>
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={this.navigate} value={'/create_hub'}>Create Hub</Dropdown.Item>
+                <Dropdown.Item onClick={this.navigate} value={'/edit_hub'}>Edit Hub</Dropdown.Item>
+                <Dropdown.Item onClick={this.navigate} value={'/delete_hub'}>Delete Hub</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          }
       <Dropdown text='Student Management' pointing className='link item'>
         <Dropdown.Menu>
           <Dropdown.Item onClick={this.navigate} value={'/new_std'}>New Registration</Dropdown.Item>
@@ -58,7 +60,8 @@ class Header extends Component {
 
     const leftItems = [
       { as:() => <Accordion as={Menu} vertical>
-          <Menu.Item>
+           <Menu.Item>
+
             <Accordion.Title
               active={true}
               content='User Management'
@@ -71,7 +74,7 @@ class Header extends Component {
             </Accordion.Content>
           </Menu.Item>
 
-          <Menu.Item>
+           <Menu.Item>
             <Accordion.Title
               active={true}
               content='Hub Management'
@@ -82,7 +85,7 @@ class Header extends Component {
               <p onClick={()=> {history.push('/create_hub'); this.handlePusher()}}>Add A Hub</p>,
               <label onClick={()=> {history.push('/edit_hub');  this.handlePusher()}}>Edit Hub</label>
             </Accordion.Content>
-          </Menu.Item>
+          </Menu.Item> 
 
           <Menu.Item>
             <Accordion.Title

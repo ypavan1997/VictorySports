@@ -27,11 +27,11 @@ export default class CreateHub extends Component {
   render() {
       const {name, username, address, isLoading} = this.state;
     return <React.Fragment>
+      <Header as='h3' icon textAlign='center'>
+        <Icon name='hubspot' circular />
+        <Header.Content>Add New Hub</Header.Content>
+      </Header>
       <Segment>
-        <Header as='h3' icon textAlign='center'>
-          <Icon name='hubspot' circular />
-          <Header.Content>Add New Hub</Header.Content>
-        </Header>
         <br/>
       <Grid stackable centered>
 
@@ -88,7 +88,7 @@ export default class CreateHub extends Component {
       </Segment>
         <Button disabled={isLoading} primary content={'Create Hub'} onClick={()=> {
             this.setState({isLoading: true})
-            fetch("http://ohack.herokuapp.com/v1/victoryfoundation/hub/create",
+            fetch("https://ohack.herokuapp.com/v1/victoryfoundation/hub/create",
                 {
                     method: 'POST',
                     headers: {
@@ -105,21 +105,12 @@ export default class CreateHub extends Component {
                 .then(
 
                     (result) => {
-                        const {statusCodeValue} = result;
-                        if (statusCodeValue < 400 && statusCodeValue > 200) {
-                            this.setState({
-                                isLoading: false,
-                                result: result,
-                                ...initalState
-                            });
-                            createNotification('success', 'Hub Added')
-                        } else {
-                            this.setState({
-                                isLoading: false,
-                                error: result
-                            });
-                            createNotification('error', 'Could not add hub, please try again')
-                        }
+                      this.setState({
+                        isLoading: false,
+                        result: result,
+                        ...initalState
+                      });
+                      createNotification('success', 'Hub Added')
                     },
                     // Note: it's important to handle errors here
                     // instead of a catch() block so that we don't swallow

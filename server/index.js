@@ -9,6 +9,10 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const keys = require('../config/keys');
 const port = 9000;
+const fetch = require('node-fetch');
+const Bluebird = require('bluebird');
+
+fetch.Promise = Bluebird;
 
 
 const app = express();
@@ -68,7 +72,14 @@ app.engine('html', require('ejs').renderFile);
 
 app.get('/', (req, res) => {
     if(req.user) {
-        res.render(__dirname + '/index.html');
+        fetch('https://ohack.herokuapp.com/v1/victoryfoundation/users/logon?username='+req.user.emails[0].value)
+            .then(r => {
+                if (r.ok) {
+                    res.render(__dirname + '/index.html');
+                } else {
+                        res.render(path.resolve('__dirname', '../build/error.html'));
+                }
+            });
     } else {
         res.redirect('/auth/google');
     }

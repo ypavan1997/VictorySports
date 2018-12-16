@@ -45,18 +45,19 @@ export default class AddNewUser extends React.Component {
 
   handleDateChange(date) {
     this.setState({
-      startDate: date
+      startDate: date,
+      date_long: date.getTime()/1000
     });
   }
   render() {
-    const {name, username, user_role, address, pincode, mobile, startDate, education, sport, about, isLoading} = this.state;
+    const {name, username, user_role, address, pincode, mobile, startDate, education, sport, about, isLoading, date_long} = this.state;
 
     return <React.Fragment>
+      <Header as='h3' icon textAlign='center'>
+        <Icon name='user outline' circular />
+        <Header.Content>Add New User</Header.Content>
+      </Header>
       <Segment>
-        <Header as='h3' icon textAlign='center'>
-          <Icon name='user outline' circular />
-          <Header.Content>Add New User</Header.Content>
-        </Header>
         <br/>
         <Form loading={isLoading}>
         <Grid doubling >
@@ -190,20 +191,6 @@ export default class AddNewUser extends React.Component {
         <br/>
         {this.state.user_role === COACH_ID && <Button disabled={isLoading} primary content={'Add New Coach'} onClick={()=> {
           this.setState({isLoading: true})
-          console.log({
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              username: username,
-              name: name,
-              role: {
-                id: user_role
-              }
-            })
-          });
           fetch("https://ohack.herokuapp.com/v1/victoryfoundation/users",
             {
               method: 'POST',
@@ -212,14 +199,18 @@ export default class AddNewUser extends React.Component {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
+                coach : {
+                  name: name,
+                  about: about,
+                  address: address,
+                  experience: education,
+                  dob: date_long,
+                  sport: {
+                    id: sport
+                  },
+                },
                 username: username,
                 name: name,
-                about: about,
-                address: address,
-                experience: education,
-                sport: {
-                  id: sport
-                },
                 role: {
                   id: user_role
                 }

@@ -3,12 +3,13 @@ import {Divider, Header, Icon} from 'semantic-ui-react'
 import ScoringBoard from "./ScoringBoard";
 import Grid from "semantic-ui-react/dist/es/collections/Grid/Grid";
 import Form from "semantic-ui-react/dist/es/collections/Form/Form";
+import connect from "react-redux/es/connect/connect";
 
 
 class ScoringPage extends React.Component {
 
     render() {
-        const { match } = this.props;
+        const { match, currentActivity } = this.props;
 
         return (
             <Form>
@@ -26,14 +27,14 @@ class ScoringPage extends React.Component {
                             <Grid.Column width={10}>
                                 <Divider horizontal>
                                     <Header as='h4'>
-                                        Hub ID {match.params.hubId} - {match.params.activityDate}
+                                        Hub ID {currentActivity.hubName} - {match.params.activityDate}
                                     </Header>
                                 </Divider>
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row centered>
                             <Grid.Column width={10}>
-                                <ScoringBoard />
+                                <ScoringBoard activity={currentActivity}/>
                             </Grid.Column>
                         </Grid.Row>
                     </React.Fragment>
@@ -43,4 +44,14 @@ class ScoringPage extends React.Component {
     }
 }
 
-export default ScoringPage;
+function mapStateToProps(state) {
+    return {
+        currentActivity: state.openActivity.current
+    }
+}
+
+
+export default connect(
+    mapStateToProps,
+    null
+)(ScoringPage)

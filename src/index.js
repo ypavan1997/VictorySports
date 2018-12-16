@@ -14,6 +14,7 @@ import userReducer from "./redux/reducers/userReducer";
 import {addUser, addUserRole} from "./redux/actions/UserActions";
 import activityTrackerReducer from "./redux/reducers/activityTrackerReducer";
 import userManagementReducer from "./redux/reducers/userManagementReducer";
+import openActivityReducer from "./redux/reducers/openActivityReducer";
 import 'semantic-ui-css/semantic.min.css'
 import 'react-notifications/lib/notifications.css';
 import './index.css';
@@ -34,7 +35,8 @@ const rootReducer = combineReducers({
   modal: modalReducer,
   user: userReducer,
   activityTracker: activityTrackerReducer,
-  userManagement : userManagementReducer
+  userManagement : userManagementReducer,
+  openActivity : openActivityReducer
 });
 export const store = createStore(
   connectRouter(history)(rootReducer),
@@ -47,7 +49,7 @@ fetch('/api/current_user')
         if(data) {
             store.dispatch(addUser(data));
             console.log(data);
-            fetch("http://ohack.herokuapp.com/v1/victoryfoundation/users/logon?username="+data.emails[0].value,
+            fetch("https://ohack.herokuapp.com/v1/victoryfoundation/users/logon?username="+data.emails[0].value,
                 {
                     method: 'GET',
                     headers: {

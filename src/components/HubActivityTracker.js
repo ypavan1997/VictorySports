@@ -357,10 +357,10 @@ class HubActivityTracker extends React.Component {
                 this.handleDiet();
                 break;
             case 5:
-                //this.handlePracticeMatch();
+                this.handleProps();
                 break;
             case 6:
-                //this.handlePracticeMatch();
+                this.handleGM();
                 break;
             case 7:
                 //this.handlePracticeMatch();

@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import DatePicker from "react-datepicker/es/index";
 import "react-datepicker/dist/react-datepicker.css";
 import Grid from "semantic-ui-react/dist/es/collections/Grid/Grid";
-import Segment from "semantic-ui-react/dist/es/elements/Segment/Segment";
 import Form from "semantic-ui-react/dist/es/collections/Form/Form";
 import HubActivityItems from "./HubActivityItems";
 import { Divider, Header, Icon } from 'semantic-ui-react'
+import {store} from "../index";
+import {addOpenActivity} from "../redux/actions/OpenActivityActions";
+import connect from "react-redux/es/connect/connect";
+import _ from "lodash";
+import Table from "semantic-ui-react/dist/es/collections/Table/Table";
+import Checkbox from "semantic-ui-react/dist/es/modules/Checkbox/Checkbox";
 
 
 const styles = theme => ({
@@ -35,6 +39,7 @@ class LandingPage extends React.Component {
     getYesterDayDate() {
         let date = new Date();
         date.setDate(date.getDate() - 1);
+        date.setHours(0,0,0,0);
         return date;
     }
 
@@ -43,17 +48,25 @@ class LandingPage extends React.Component {
     constructor(props) {
         super(props);
         this.handleDateChange = this.handleDateChange.bind(this);
+        this.handleDateChange(this.getYesterDayDate());
     }
 
     handleDateChange(date) {
-        this.setState({
-            startDate: date
-        });
+        fetch('https://ohack.herokuapp.com/v1/victoryfoundation/activities/'+date.getTime()/1000+'/review')
+            .then(response => response.json())
+            .then(data => {
+                if(data) {
+                    store.dispatch(addOpenActivity(data));
+                }
+                this.setState({
+                    startDate: date
+                });
+            });
     }
 
     render() {
         const { startDate } = this.state;
-        const { history } = this.props;
+        const { history, openActivity } = this.props;
         return (
             <Form>
                 <Grid doubling >
@@ -96,7 +109,9 @@ class LandingPage extends React.Component {
                         </Grid.Row>
                         <Grid.Row centered>
                             <Grid.Column width={10}>
-                                <HubActivityItems history={history}/>
+                                {_.map(openActivity.activity, activity =>
+                                    <HubActivityItems history={history} activity={activity} activityDate={ this.state.startDate}/>
+                                )}
                             </Grid.Column>
                         </Grid.Row>
                     </React.Fragment>
@@ -110,4 +125,13 @@ LandingPage.propTypes = {
     classes: PropTypes.object,
 };
 
-export default withStyles(styles)(LandingPage);
+function mapStateToProps(state) {
+    return {
+        openActivity: state.openActivity
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(LandingPage);

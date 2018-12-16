@@ -83,4 +83,4 @@ function mapStateToProps(state) {
 export default connect(
     mapStateToProps,
     null
-)(UserStatus)
+)(UserStatus);

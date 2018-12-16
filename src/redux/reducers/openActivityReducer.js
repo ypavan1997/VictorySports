@@ -1,15 +1,18 @@
 const initialState = {
-    userList: null
+    activity: null,
+    current: null
 };
 
-const userManagementReducer = (state = initialState, action) => {
+const openActivityReducer = (state = initialState, action) => {
   switch (action.type) {
-      case 'ADD_USER_LIST':
-          return Object.assign({}, state, { userList: action.users });
+      case 'ADD_OPEN_ACTIVITY':
+          return Object.assign({}, state, { ...action.data });
+      case 'ADD_CURRENT_ACTIVITY':
+          return Object.assign({}, state, { current : action.data });
       default:
       return state
   }
 };
 
-export default userManagementReducer;
+export default openActivityReducer;
 

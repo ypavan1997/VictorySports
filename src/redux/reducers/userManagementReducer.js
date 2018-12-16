@@ -1,29 +1,15 @@
 const initialState = {
-    activeStep: 0,
-    checkIn:{},
-    sessionPlanned:{},
-    sessionAS:{},
-    practiceMatch: {},
-    diet:{},
-    props:{},
-    groundMarking:{},
-    attendance:{},
-    checkOut:{}
+    userList: null
 };
 
-const activityTrackerReducer = (state = initialState, action) => {
+const userManagementReducer = (state = initialState, action) => {
   switch (action.type) {
-      case 'INCREASE_STEP':
-          return Object.assign({}, state, { activeStep: state.activeStep+1 });
-      case 'DECREASE_STEP':
-          return Object.assign({}, state, { activeStep: state.activeStep-1 });
-      case 'CHECK_IN':
-          return Object.assign({}, state, { checkIn: action.data });
-      case 'UPDATE_ACTIVITY_ID':
-          return Object.assign({}, state, { activityId: action.data });
+      case 'ADD_USER_LIST':
+          return Object.assign({}, state, { userList: action.users });
       default:
       return state
   }
 };
 
-export default activityTrackerReducer;
+export default userManagementReducer;
+

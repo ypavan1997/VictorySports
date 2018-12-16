@@ -1,13 +1,6 @@
-export const addUser = (user) => {
+export const addUserList = (users) => {
     return {
-        type: 'ADD_USER',
-        user
-    }
-};
-
-export const addUserRole = (userRole) => {
-    return {
-        type: 'ADD_USER_ROLE',
-        userRole
+        type: 'ADD_USER_LIST',
+        users
     }
 };

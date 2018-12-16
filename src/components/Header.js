@@ -60,7 +60,7 @@ class Header extends Component {
 
     const leftItems = [
       { as:() => <Accordion as={Menu} vertical>
-          { role === 'ADMIN' && <Menu.Item>
+           <Menu.Item>
 
             <Accordion.Title
               active={true}
@@ -72,9 +72,9 @@ class Header extends Component {
               <p onClick={()=> {history.push('/user_mgmt'); this.handlePusher()}}>Add A User</p>,
               <label onClick={()=> {history.push('/user_status');  this.handlePusher()}}>User Status</label>
             </Accordion.Content>
-          </Menu.Item> }
+          </Menu.Item>
 
-          { role === 'ADMIN' && <Menu.Item>
+           <Menu.Item>
             <Accordion.Title
               active={true}
               content='Hub Management'
@@ -85,7 +85,7 @@ class Header extends Component {
               <p onClick={()=> {history.push('/create_hub'); this.handlePusher()}}>Add A Hub</p>,
               <label onClick={()=> {history.push('/edit_hub');  this.handlePusher()}}>Edit Hub</label>
             </Accordion.Content>
-          </Menu.Item> }
+          </Menu.Item> 
 
           <Menu.Item>
             <Accordion.Title

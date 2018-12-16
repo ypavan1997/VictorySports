@@ -99,7 +99,7 @@ export default class FamilyDetails extends React.Component {
             </Grid.Column>
             <Grid.Column mobile={10}>
               <Form.Field>
-                <Form.Input name={'m_income'} value={siblings} fluid placeholder="Number of siblings" onChange={handleInputs}/>
+                <Form.Input name={'siblings'} value={siblings} fluid placeholder="Number of siblings" onChange={handleInputs}/>
               </Form.Field>
             </Grid.Column>
           </Grid.Row>

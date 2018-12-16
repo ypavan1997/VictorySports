@@ -88,7 +88,7 @@ export default class CreateHub extends Component {
       </Segment>
         <Button disabled={isLoading} primary content={'Create Hub'} onClick={()=> {
             this.setState({isLoading: true})
-            fetch("http://ohack.herokuapp.com/v1/victoryfoundation/hub/create",
+            fetch("https://ohack.herokuapp.com/v1/victoryfoundation/hub/create",
                 {
                     method: 'POST',
                     headers: {

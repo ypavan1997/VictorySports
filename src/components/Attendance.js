@@ -8,48 +8,18 @@ import "react-table/react-table.css";
 
 import Chance from "chance";
 import checkboxHOC from "react-table/lib/hoc/selectTable";
+import {store} from "../index";
+import {addUserList} from "../redux/actions/UserListActions";
 
 const CheckboxTable = checkboxHOC(ReactTable);
 
 const chance = new Chance();
 
-function getData() {
-    let testData = [{id:1, name:'abc'},
-                    {id:2, name:'abc'},
-                    {id:3, name:'abc'},
-                    {id:4, name:'abc'},
-                    {id:5, name:'abc'},
-                    {id:6, name:'abc'},
-                    {id:7, name:'abc'},
-                    {id:8, name:'abc'},
-                    {id:9, name:'abc'},
-                    {id:10, name:'abc'},
-                    {id:11, name:'abc'},
-                    {id:12, name:'abc'}
-                    ];
-    const data = testData.map(item => {
-        // using chancejs to generate guid
-        // shortid is probably better but seems to have performance issues
-        // on codesandbox.io
-        const _id = chance.guid();
-        return {
-            _id,
-            ...item
-        };
-    });
-    return data;
-}
-
-function getColumns(data) {
+function getColumns() {
     const columns = [];
-    const sample = data[0];
-    Object.keys(sample).forEach(key => {
-        if (key !== "_id") {
-            columns.push({
-                accessor: key,
-                Header: key
-            });
-        }
+    columns.push({
+        accessor: 'studentName',
+        Header: 'Student Name'
     });
     return columns;
 }
@@ -57,14 +27,36 @@ function getColumns(data) {
 export default class Attendance extends React.Component {
     constructor() {
         super();
-        const data = getData();
-        const columns = getColumns(data);
+
         this.state = {
-            data,
-            columns,
+            columns: getColumns(),
             selection: [],
             selectAll: false
         };
+        this.loadUserData();
+    }
+
+    loadUserData() {
+        fetch('https://ohack.herokuapp.com/v1/victoryfoundation/student/hub/81')
+            .then(response => response.json())
+            .then(data => {
+                if(data) {
+                    console.log('students', data);
+                    const data = data.map(item => {
+                        // using chancejs to generate guid
+                        // shortid is probably better but seems to have performance issues
+                        // on codesandbox.io
+                        const _id = chance.guid();
+                        return {
+                            _id,
+                            studentName: item.studentName
+                        };
+                    });
+                    this.setState({
+                        data
+                    });
+                }
+            });
     }
 
     toggleSelection = (key, shift, row) => {
@@ -139,7 +131,7 @@ export default class Attendance extends React.Component {
     };
 
     render() {
-        const { toggleSelection, toggleAll, isSelected, logSelection } = this;
+        const { toggleSelection, toggleAll, isSelected } = this;
         const { data, columns, selectAll } = this.state;
 
         const checkboxProps = {

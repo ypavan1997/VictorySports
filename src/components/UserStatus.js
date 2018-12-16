@@ -49,7 +49,7 @@ class UserStatus extends React.Component {
                   <Table.Cell>{user.name}</Table.Cell>
                   <Table.Cell>{user.username}</Table.Cell>
                   <Table.Cell>{user.role.type}</Table.Cell>
-                  <Table.Cell>{user.status}</Table.Cell>
+                  <Table.Cell>{user.statusR}</Table.Cell>
                   <Table.Cell>
                     <Checkbox />
                 </Table.Cell>

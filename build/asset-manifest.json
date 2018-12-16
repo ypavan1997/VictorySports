@@ -1,10 +1,10 @@
 {
   "main.css": "/victory/static/css/main.05970f6b.chunk.css",
-  "main.js": "/victory/static/js/main.59ff18bf.chunk.js",
-  "main.js.map": "/victory/static/js/main.59ff18bf.chunk.js.map",
+  "main.js": "/victory/static/js/main.2f38bd9b.chunk.js",
+  "main.js.map": "/victory/static/js/main.2f38bd9b.chunk.js.map",
   "static/css/1.8b899fc8.chunk.css": "/victory/static/css/1.8b899fc8.chunk.css",
-  "static/js/1.332474d1.chunk.js": "/victory/static/js/1.332474d1.chunk.js",
-  "static/js/1.332474d1.chunk.js.map": "/victory/static/js/1.332474d1.chunk.js.map",
+  "static/js/1.72d1f075.chunk.js": "/victory/static/js/1.72d1f075.chunk.js",
+  "static/js/1.72d1f075.chunk.js.map": "/victory/static/js/1.72d1f075.chunk.js.map",
   "runtime~main.js": "/victory/static/js/runtime~main.c592824c.js",
   "runtime~main.js.map": "/victory/static/js/runtime~main.c592824c.js.map",
   "static/media/notifications.css": "/victory/static/media/notification.5bee74ca.svg",
@@ -13,6 +13,6 @@
   "static/css/1.8b899fc8.chunk.css.map": "/victory/static/css/1.8b899fc8.chunk.css.map",
   "static/css/main.05970f6b.chunk.css.map": "/victory/static/css/main.05970f6b.chunk.css.map",
   "../server/index.html": "/victory/../server/index.html",
-  "precache-manifest.8cbc34a3d029047e5b5365d21f386bd7.js": "/victory/precache-manifest.8cbc34a3d029047e5b5365d21f386bd7.js",
+  "precache-manifest.4ec7462a3babec627c023c0c2bad46ce.js": "/victory/precache-manifest.4ec7462a3babec627c023c0c2bad46ce.js",
   "service-worker.js": "/victory/service-worker.js"
 }

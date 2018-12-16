@@ -5,7 +5,6 @@ export default class CheckIn extends Component {
 
     constructor(props) {
         super(props);
-        this.getHubs = this.getHubs.bind(this);
         this.getCurrentTime = this.getCurrentTime.bind(this);
     }
 

@@ -20,15 +20,15 @@ class ScoringBoard extends React.Component {
 
                 <Table.Body>
 
-                    {_.map(activity.details, details =>
+                    {_.map(activity.detail, detail =>
 
                         <Table.Row>
                             <Table.Cell>
                                 <Header as='h4' image>
                                     <Image src='/victory/matthew.png' rounded size='mini' />
                                     <Header.Content>
-                                        Lena
-                                        <Header.Subheader>Human Resources hghc gjvh vjjvg</Header.Subheader>
+                                        {detail.actionType}
+                                        <Header.Subheader>{detail.description}</Header.Subheader>
                                     </Header.Content>
                                 </Header>
                             </Table.Cell>

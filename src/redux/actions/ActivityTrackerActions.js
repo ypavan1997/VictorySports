@@ -24,4 +24,49 @@ export function doCheckIn(data) {
     }
 };
 
+export function doSessionPlanned(data) {
+    return {
+        type: 'SESSION_PLANNED',
+        data:data
+    }
+};
+
+
+
+export function doSessionAS(data) {
+    return {
+        type: 'SESSION_AS',
+        data:data
+    }
+};
+
+export function doPracticeMatch(data) {
+    return {
+        type: 'PRACTICE_MATCH',
+        data:data
+    }
+};
+
+
+
+export function doDiet(data) {
+    return {
+        type: 'DIET',
+        data:data
+    }
+};
+
+export function doProps(data) {
+    return {
+        type: 'PROPS',
+        data:data
+    }
+};
+
+export function doGM(data) {
+    return {
+        type: 'GROUND_MARKING',
+        data:data
+    }
+};
 //export default doCheckIn;

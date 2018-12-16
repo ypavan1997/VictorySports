@@ -33,21 +33,16 @@ export default class Props extends Component {
     render() {
         return <Form>
             <Form.Field>
-                <label>Special Diet</label>
-                <TextArea autoHeight placeholder='Max 500 characters' style={{ minHeight: 100 }} />
+                <label>Properties</label>
+                <TextArea autoHeight placeholder='Max 500 characters' style={{ minHeight: 100 }} name={'description'} value={this.props.value.description} onChange={this.props.onPropsChange}/>
             </Form.Field>
             <Form.Field>
                 <FilePond ref={ref => this.pond = ref}
                           allowMultiple={true}
                           maxFiles={2}
-                          server="/api"
+                          //server="/api"
                           oninit={() => this.handleInit() }
-                          onupdatefiles={(fileItems) => {
-                              // Set current file objects to this.state
-                              this.setState({
-                                  files: fileItems.map(fileItem => fileItem.file)
-                              });
-                          }}>
+                          onupdatefiles={this.props.onPropsImgChange}>
 
                     {/* Update current files  */}
                     {this.state.files.map(file => (

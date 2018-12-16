@@ -49,7 +49,7 @@ fetch('/api/current_user')
         if(data) {
             store.dispatch(addUser(data));
             console.log(data);
-            fetch("http://ohack.herokuapp.com/v1/victoryfoundation/users/logon?username="+data.emails[0].value,
+            fetch("https://ohack.herokuapp.com/v1/victoryfoundation/users/logon?username="+data.emails[0].value,
                 {
                     method: 'GET',
                     headers: {

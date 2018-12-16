@@ -1,18 +1,18 @@
 {
   "main.css": "/victory/static/css/main.80739957.chunk.css",
-  "main.js": "/victory/static/js/main.2b251449.chunk.js",
-  "main.js.map": "/victory/static/js/main.2b251449.chunk.js.map",
+  "main.js": "/victory/static/js/main.c84968fb.chunk.js",
+  "main.js.map": "/victory/static/js/main.c84968fb.chunk.js.map",
   "static/css/1.1c7b3317.chunk.css": "/victory/static/css/1.1c7b3317.chunk.css",
   "static/js/1.37dc7ac0.chunk.js": "/victory/static/js/1.37dc7ac0.chunk.js",
   "static/js/1.37dc7ac0.chunk.js.map": "/victory/static/js/1.37dc7ac0.chunk.js.map",
   "runtime~main.js": "/victory/static/js/runtime~main.c592824c.js",
   "runtime~main.js.map": "/victory/static/js/runtime~main.c592824c.js.map",
-  "static/media/notifications.css": "/victory/static/media/notification.0b4ac1dc.ttf",
+  "static/media/notifications.css": "/victory/static/media/notification.5bee74ca.svg",
   "static/media/logo.png": "/victory/static/media/logo.22c656b0.png",
   "static/media/semantic.min.css": "/victory/static/media/icons.0ab54153.woff2",
-  "static/css/1.1c7b3317.chunk.css.map": "/victory/static/css/1.1c7b3317.chunk.css.map",
   "static/css/main.80739957.chunk.css.map": "/victory/static/css/main.80739957.chunk.css.map",
+  "static/css/1.1c7b3317.chunk.css.map": "/victory/static/css/1.1c7b3317.chunk.css.map",
   "../server/index.html": "/victory/../server/index.html",
-  "precache-manifest.d1d8e19e8dd8c75a63ff05a48cecbca2.js": "/victory/precache-manifest.d1d8e19e8dd8c75a63ff05a48cecbca2.js",
+  "precache-manifest.588efc0c2e63e7612ce1088821137b97.js": "/victory/precache-manifest.588efc0c2e63e7612ce1088821137b97.js",
   "service-worker.js": "/victory/service-worker.js"
 }

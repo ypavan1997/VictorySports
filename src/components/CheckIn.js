@@ -9,11 +9,21 @@ export default class CheckIn extends Component {
         this.getCurrentTime = this.getCurrentTime.bind(this);
     }
 
-    getHubs() {
-        return [{ key: 'hub1', value: 81, text: 'Hub1' },
-            { key: 'hub2', value: 'hub2', text: 'Hub2' },
-            { key: 'hub2', value: 'hub2', text: 'Hub2' }];
-    }
+  state = {hubList: []};
+
+  componentDidMount() {
+    fetch('https://ohack.herokuapp.com/v1/victoryfoundation/hub', {
+      method: 'GET'
+    }).then (
+      res => res.json()
+    ). then (result => {
+        const opts = []
+        result.map((item,i) => opts.push({ text: item.hubName, value: item.hubId, key: i}))
+        this.setState({hubList: opts})
+      }
+    )
+  }
+
 
     getCurrentTime() {
         let date = new Date();
@@ -25,7 +35,7 @@ export default class CheckIn extends Component {
     render() {
         return <Form>
             <Form.Field>
-            <Select name={'hub'} value={this.props.value.hub} placeholder='Select your hub' options={this.getHubs()} onChange={this.props.onCheckInChange}/>
+            <Select name={'hub'} value={this.props.value.hub} placeholder='Select your hub' options={this.state.hubList} onChange={this.props.onCheckInChange}/>
             </Form.Field>
             <Form.Field>
             <Card centered>

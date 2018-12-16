@@ -10,6 +10,7 @@ import {createNotification} from "../utils/utils";
 import Loader from "semantic-ui-react/dist/es/elements/Loader/Loader";
 import Header from "semantic-ui-react/dist/es/elements/Header/Header";
 import Icon from "semantic-ui-react/dist/es/elements/Icon/Icon";
+import Dimmer from "semantic-ui-react/dist/es/modules/Dimmer/Dimmer";
 
 export default class NewStudent extends Component {
 
@@ -31,14 +32,16 @@ export default class NewStudent extends Component {
 
   handleDojChange(date) {
     this.setState({
-      doj: date
+      doj: date,
+      doj_long: date.getTime()/1000
     });
   }
 
   handleDobChange(date) {
     this.setState({
-      dob: date
-    });
+      dob: date,
+      dob_long: date.getTime()/1000
+    })
   }
 
   handleIdProofFileChange(fileItems) {
@@ -74,7 +77,7 @@ export default class NewStudent extends Component {
       { menuItem: 'Misc', pane:  <Tab.Pane > <MiscDetails handleInputs={this.handleChange} {...this.state}/></Tab.Pane> },
       { menuItem: 'Upload', pane: <Tab.Pane> <StudentUpload
           handlePicChange={this.handlePicChange}
-          handleIdProofFileChange={this.handleIdProofFileChange}/></Tab.Pane> },
+          handleIdProofFileChange={this.handleIdProofFileChange}/> <br/></Tab.Pane> },
     ];
 
     return (
@@ -84,7 +87,9 @@ export default class NewStudent extends Component {
           <Header.Content>Add New Student</Header.Content>
         </Header>
         <br/>
-        <Loader active={isLoading} size='large'>Loading</Loader>
+        <Dimmer active={isLoading}>
+        <Loader  size='large'>Loading</Loader>
+        </Dimmer>
         <Tab renderActiveOnly={false} panes={panes} menu={{attached: true, size: 'small', tabular: true }} />
         <Button primary content={'Create Student'} disabled={isLoading}
                 onClick={() => {
@@ -103,9 +108,9 @@ export default class NewStudent extends Component {
                   data.append('sport_id', 31)
                   data.append('active', 'A')
                   data.append('status', 'ACTIVE')
-                  data.append('dob', dob)
+                  data.append('dob', this.state.dob_long)
                   data.append('aadhar', aadhar)
-                  data.append('year', doj);
+                  data.append('year', this.state.doj_long);
                   data.append('weight', 20);
                   data.append('height', 10);
                   data.append('address', address);

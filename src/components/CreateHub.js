@@ -27,11 +27,11 @@ export default class CreateHub extends Component {
   render() {
       const {name, username, address, isLoading} = this.state;
     return <React.Fragment>
+      <Header as='h3' icon textAlign='center'>
+        <Icon name='hubspot' circular />
+        <Header.Content>Add New Hub</Header.Content>
+      </Header>
       <Segment>
-        <Header as='h3' icon textAlign='center'>
-          <Icon name='hubspot' circular />
-          <Header.Content>Add New Hub</Header.Content>
-        </Header>
         <br/>
       <Grid stackable centered>
 

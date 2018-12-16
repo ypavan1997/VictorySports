@@ -52,11 +52,11 @@ export default class AddNewUser extends React.Component {
     const {name, username, user_role, address, pincode, mobile, startDate, education, sport, about, isLoading} = this.state;
 
     return <React.Fragment>
+      <Header as='h3' icon textAlign='center'>
+        <Icon name='user outline' circular />
+        <Header.Content>Add New User</Header.Content>
+      </Header>
       <Segment>
-        <Header as='h3' icon textAlign='center'>
-          <Icon name='user outline' circular />
-          <Header.Content>Add New User</Header.Content>
-        </Header>
         <br/>
         <Form loading={isLoading}>
         <Grid doubling >

@@ -18,12 +18,12 @@ export default class NewStudent extends Component {
     this.handleIdProofFileChange = this.handleIdProofFileChange.bind(this);
     this.handlePicChange = this.handlePicChange.bind(this);
   }
-
   state = {isLoading: false};
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleHubChange = (event, props) => {
+  console.log('hub change', props);
     this.setState({hub: props.value})
   };
 
@@ -56,7 +56,7 @@ export default class NewStudent extends Component {
 
   render() {
 
-    const  { isLoading, name, address} = this.state
+    const  { isLoading, name, address, aadhar, dob, doj, poNumber} = this.state
     const panes = [
       { menuItem: 'Personal', pane: <Tab.Pane>
           <NewStudentPersonalInfo
@@ -81,22 +81,28 @@ export default class NewStudent extends Component {
         <Tab renderActiveOnly={false} panes={panes} menu={{attached: true, size: 'small', tabular: true }} />
         <Button primary content={'Create Student'} disabled={isLoading}
                 onClick={() => {
+                  if ( !aadhar || !this.state.idProofs || !this.state.picture || !name || !dob || !doj || !address || !poNumber) {
+                    createNotification('error', 'Please fill required fields');
+                    return;
+                  }
+
                   this.setState({isLoading: true})
                   const data = new FormData();
-                  data.append('image1', this.state.idProofs[0])
-                  data.append('image2', this.state.picture[0])
+                  data.append('image1', this.state.idProofs && this.state.idProofs.length > 0 && this.state.idProofs[0])
+                  data.append('image2', this.state.picture && this.state.picture.length > 0 && this.state.picture[0])
+                  data.append('aadharImage', this.state.picture && this.state.picture.length > 1 && this.state.picture[1])
                   data.append('student_name', name)
                   data.append('hub_id', 81)
                   data.append('sport_id', 31)
                   data.append('active', 'A')
                   data.append('status', 'ACTIVE')
-                  data.append('dob', '1991-05-19')
-                  data.append('aadhar', '123123')
-                  data.append('dob', '1991-05-19')
-                  data.append('year', 1991);
+                  data.append('dob', dob)
+                  data.append('aadhar', aadhar)
+                  data.append('year', doj);
                   data.append('weight', 20);
                   data.append('height', 10);
                   data.append('address', address);
+                  data.append('post_office', poNumber)
 
                   fetch('http://ohack.herokuapp.com/v1/victoryfoundation/student', {
                     method: 'POST',
@@ -104,6 +110,10 @@ export default class NewStudent extends Component {
                   })
                     .then(res => res.json())
                     .then(result => {console.log(result); this.setState({isLoading: false});
+                    if (result.status >= 400) {
+                      createNotification('error', 'Could not add student')
+                      return
+                    }
                       createNotification('success', 'Student Added')})
                     .catch(
                       error =>{

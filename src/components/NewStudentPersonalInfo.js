@@ -4,16 +4,29 @@ import Grid from "semantic-ui-react/dist/es/collections/Grid/Grid";
 import DatePicker from "react-datepicker/es/index";
 import TextArea from "semantic-ui-react/dist/es/addons/TextArea/TextArea";
 
-const options = [
-  {key: 'a', value: 'admin', text: 'Admin'},
-  {key: 'c', value: 'coach', text: 'Coach'}
-];
 
 export default class NewStudentPersonalInfo extends React.Component {
 
-  render() {
-    const {handleInputs, name, username, hubs, address, doj, dob, handleDobChange, handleDojChange, handleHubChange, poNumber} = this.props;
+  state = {hubList: []};
 
+  componentDidMount() {
+    fetch('https://ohack.herokuapp.com/v1/victoryfoundation/hub', {
+      method: 'GET'
+    }).then (
+      res => res.json()
+    ). then (result => {
+      const opts = []
+      result.map((item,i) => opts.push({ text: item.hubName, value: item.hubId, key: i}))
+      console.log('hubs:', opts)
+        this.setState({hubList: opts})
+      }
+    )
+  }
+
+  render() {
+    const {handleInputs, name, education, hub, address, doj, dob, handleDobChange, handleDojChange, handleHubChange, poNumber, aadhar} = this.props;
+    const { hubList} = this.state;
+console.log('render hubs', hubList, '  ' + hub);
     return <React.Fragment>
 
         <Form>
@@ -28,13 +41,23 @@ export default class NewStudentPersonalInfo extends React.Component {
                 </Form.Field>
               </Grid.Column>
             </Grid.Row>
+            <Grid.Row >
+              <Grid.Column textAlign={'left'} mobile={6}>
+                <label className={'Admin-Form-Label'}>Aadhar Number</label>
+              </Grid.Column>
+              <Grid.Column mobile={10}>
+                <Form.Field>
+                  <Form.Input fluid placeholder="Aadhar Number" name={'aadhar'} value={aadhar} onChange={handleInputs}/>
+                </Form.Field>
+              </Grid.Column>
+            </Grid.Row>
             <Grid.Row columns={2}>
               <Grid.Column textAlign={'left'} mobile={6}>
                 <label className={'Admin-Form-Label'}>Name of school </label>
               </Grid.Column>
               <Grid.Column mobile={10}>
                 <Form.Field>
-                  <Form.Input name={'username'} value={username} fluid placeholder="Username" onChange={handleInputs}/>
+                  <Form.Input name={'education'} value={education} fluid placeholder="education" onChange={handleInputs}/>
                 </Form.Field>
               </Grid.Column>
             </Grid.Row>
@@ -45,7 +68,7 @@ export default class NewStudentPersonalInfo extends React.Component {
               </Grid.Column>
               <Grid.Column mobile={10}>
                 <Form.Field>
-                  <Form.Select options={hubs} name={'hubs'}  placeholder='Hub' onChange={handleHubChange} fluid/>
+                  <Form.Select value={hub} options={hubList} placeholder='Hub' onChange={handleHubChange} fluid/>
                 </Form.Field>
               </Grid.Column>
             </Grid.Row>
@@ -73,7 +96,7 @@ export default class NewStudentPersonalInfo extends React.Component {
                   showMonthDropdown
                   showYearDropdown
                   dropdownMode="select"
-                  dateFormat="dd/MM/yyyy"
+                  dateFormat="yyyy/MM/dd"
                   onChange={handleDojChange}
                 />
 
@@ -106,7 +129,7 @@ export default class NewStudentPersonalInfo extends React.Component {
                     showMonthDropdown
                     showYearDropdown
                     dropdownMode="select"
-                    dateFormat="dd/MM/yyyy"
+                    dateFormat="yyyy/MM/dd"
                     onChange={handleDobChange}
                   />
 

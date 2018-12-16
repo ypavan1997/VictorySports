@@ -46,10 +46,10 @@ export default class NewStudent extends Component {
             {...this.state}
         />
         </Tab.Pane> },
-      { menuItem: 'Medical', pane: <Tab.Pane><MedicalInfo/></Tab.Pane> },
+      { menuItem: 'Medical', pane: <Tab.Pane><MedicalInfo handleInputs={this.handleChange} {...this.state}/></Tab.Pane> },
       { menuItem: 'Family', pane: <Tab.Pane><FamilyDetails handleInputs={this.handleChange} {...this.state}/></Tab.Pane> },
-      { menuItem: 'Misc', pane:  <Tab.Pane> <MiscDetails handleChange={this.handleChange} {...this.state}/></Tab.Pane> },
-      { menuItem: 'Upload', pane: <Tab.Pane> <StudentUpload/></Tab.Pane> },
+      { menuItem: 'Misc', pane:  <Tab.Pane> <MiscDetails handleInputs={this.handleChange} {...this.state}/></Tab.Pane> },
+      { menuItem: 'Upload', pane: <Tab.Pane> <StudentUpload handleInputs={this.handleChange} {...this.state}/></Tab.Pane> },
     ];
 
     return (

@@ -5,27 +5,14 @@ import Grid from "semantic-ui-react/dist/es/collections/Grid/Grid";
 export default class MiscDetails extends React.Component {
 
   constructor(props) {
-    super(props)
-    this.handleDateChange = this.handleDateChange.bind(this)
+    super(props);
   }
 
   state = { activeItem: 'Add New User' };
 
-
-  handleChange = (e, { name, value }) => this.setState({ [name]: value })
-
-  handleUserRoleChange = (event, props) => {
-    this.setState({user_role: props.value})
-  };
-
-  handleDateChange(date) {
-    this.setState({
-      startDate: date
-    });
-  }
-
   render() {
-    const {name, username, password, retype_password, user_role} = this.state;
+    const {height, weight, j_size, b_size} = this.state;
+    const {handleInputs} = this.props;
 
     return <React.Fragment>
 
@@ -37,7 +24,7 @@ export default class MiscDetails extends React.Component {
             </Grid.Column>
             <Grid.Column mobile={10}>
               <Form.Field>
-                <Form.Input name={'name'} value={name} fluid placeholder="Height" onChange={this.handleChange}/>
+                <Form.Input name={'height'} value={height} fluid placeholder="Height" onChange={handleInputs}/>
               </Form.Field>
             </Grid.Column>
           </Grid.Row>
@@ -47,7 +34,7 @@ export default class MiscDetails extends React.Component {
             </Grid.Column>
             <Grid.Column mobile={10}>
               <Form.Field>
-                <Form.Input name={'username'} value={username} fluid placeholder="Weight" onChange={this.handleChange}/>
+                <Form.Input name={'weight'} value={weight} fluid placeholder="Weight" onChange={handleInputs}/>
               </Form.Field>
             </Grid.Column>
           </Grid.Row>
@@ -57,7 +44,7 @@ export default class MiscDetails extends React.Component {
             </Grid.Column>
             <Grid.Column mobile={10}>
               <Form.Field>
-                <Form.Input name={'username'} value={username} fluid placeholder="Jersey Size" onChange={this.handleChange}/>
+                <Form.Input name={'j_size'} value={j_size} fluid placeholder="Jersey Size" onChange={handleInputs}/>
               </Form.Field>
             </Grid.Column>
           </Grid.Row>
@@ -68,7 +55,7 @@ export default class MiscDetails extends React.Component {
             </Grid.Column>
             <Grid.Column mobile={10}>
               <Form.Field>
-                <Form.Input name={'name'} value={name} fluid placeholder="Boot Size" onChange={this.handleChange}/>
+                <Form.Input name={'b_size'} value={b_size} fluid placeholder="Boot Size" onChange={handleInputs}/>
               </Form.Field>
             </Grid.Column>
           </Grid.Row>

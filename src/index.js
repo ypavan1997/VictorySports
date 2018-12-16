@@ -11,8 +11,9 @@ import { ConnectedRouter } from 'connected-react-router'
 import { logger } from 'redux-logger';
 import modalReducer from "./redux/reducers/modalReducer";
 import userReducer from "./redux/reducers/userReducer";
+import {addUser, addUserRole} from "./redux/actions/UserActions";
 import activityTrackerReducer from "./redux/reducers/activityTrackerReducer";
-import {addUser} from "./redux/actions/ModalActions";
+import userManagementReducer from "./redux/reducers/userManagementReducer";
 import 'semantic-ui-css/semantic.min.css'
 import 'react-notifications/lib/notifications.css';
 import './index.css';
@@ -32,7 +33,8 @@ const middleWares = [
 const rootReducer = combineReducers({
   modal: modalReducer,
   user: userReducer,
-  activityTracker: activityTrackerReducer
+  activityTracker: activityTrackerReducer,
+  userManagement : userManagementReducer
 });
 export const store = createStore(
   connectRouter(history)(rootReducer),
@@ -41,7 +43,32 @@ export const store = createStore(
 
 fetch('/api/current_user')
     .then(response => response.json())
-    .then(data => { store.dispatch(addUser(data));});
+    .then(data => {
+        if(data) {
+            store.dispatch(addUser(data));
+            console.log(data);
+            fetch("http://ohack.herokuapp.com/v1/victoryfoundation/users/logon?username="+data.emails[0].value,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        store.dispatch(addUserRole(result));
+                    },
+                    // Note: it's important to handle errors here
+                    // instead of a catch() block so that we don't swallow
+                    // exceptions from actual bugs in components.
+                    (error) => {
+
+                    }
+                )
+        }
+    });
 
 ReactDOM.render((
   <Provider store={store} key='provider'>

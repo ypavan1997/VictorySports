@@ -10,11 +10,3 @@ export const hideModal = () => {
     type: 'HIDE_MODAL',
   }
 };
-
-
-export const addUser = (user) => {
-    return {
-        type: 'ADD_USER',
-        user
-    }
-};

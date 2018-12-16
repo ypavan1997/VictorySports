@@ -4,36 +4,29 @@ import Grid from "semantic-ui-react/dist/es/collections/Grid/Grid";
 import DatePicker from "react-datepicker/es/index";
 import TextArea from "semantic-ui-react/dist/es/addons/TextArea/TextArea";
 
-const options = [
-  {key: 'a', value: 'admin', text: 'Admin'},
-  {key: 'c', value: 'coach', text: 'Coach'}
-];
 
 export default class NewStudentPersonalInfo extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.handleDateChange = this.handleDateChange.bind(this)
-  }
+  state = {hubList: []};
 
-  state = { activeItem: 'Add New User' };
-
-
-  handleChange = (e, { name, value }) => this.setState({ [name]: value })
-
-  handleUserRoleChange = (event, props) => {
-    this.setState({user_role: props.value})
-  };
-
-  handleDateChange(date) {
-    this.setState({
-      startDate: date
-    });
+  componentDidMount() {
+    fetch('https://ohack.herokuapp.com/v1/victoryfoundation/hub', {
+      method: 'GET'
+    }).then (
+      res => res.json()
+    ). then (result => {
+      const opts = []
+      result.map((item,i) => opts.push({ text: item.hubName, value: item.hubId, key: i}))
+      console.log('hubs:', opts)
+        this.setState({hubList: opts})
+      }
+    )
   }
 
   render() {
-    const {name, username, password, retype_password, user_role} = this.state;
-
+    const {handleInputs, name, education, hub, address, doj, dob, handleDobChange, handleDojChange, handleHubChange, poNumber, aadhar} = this.props;
+    const { hubList} = this.state;
+console.log('render hubs', hubList, '  ' + hub);
     return <React.Fragment>
 
         <Form>
@@ -44,7 +37,17 @@ export default class NewStudentPersonalInfo extends React.Component {
               </Grid.Column>
               <Grid.Column mobile={10}>
                 <Form.Field>
-                  <Form.Input name={'name'} value={name} fluid placeholder="Name" onChange={this.handleChange}/>
+                  <Form.Input name={'name'} value={name} fluid placeholder="Name" onChange={handleInputs}/>
+                </Form.Field>
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row >
+              <Grid.Column textAlign={'left'} mobile={6}>
+                <label className={'Admin-Form-Label'}>Aadhar Number</label>
+              </Grid.Column>
+              <Grid.Column mobile={10}>
+                <Form.Field>
+                  <Form.Input fluid placeholder="Aadhar Number" name={'aadhar'} value={aadhar} onChange={handleInputs}/>
                 </Form.Field>
               </Grid.Column>
             </Grid.Row>
@@ -54,7 +57,7 @@ export default class NewStudentPersonalInfo extends React.Component {
               </Grid.Column>
               <Grid.Column mobile={10}>
                 <Form.Field>
-                  <Form.Input name={'username'} value={username} fluid placeholder="Username" onChange={this.handleChange}/>
+                  <Form.Input name={'education'} value={education} fluid placeholder="education" onChange={handleInputs}/>
                 </Form.Field>
               </Grid.Column>
             </Grid.Row>
@@ -65,17 +68,17 @@ export default class NewStudentPersonalInfo extends React.Component {
               </Grid.Column>
               <Grid.Column mobile={10}>
                 <Form.Field>
-                  <Form.Select options={options} name={'role'} value={user_role} placeholder='Hub' onChange={this.handleUserRoleChange} fluid/>
+                  <Form.Select value={hub} options={hubList} placeholder='Hub' onChange={handleHubChange} fluid/>
                 </Form.Field>
               </Grid.Column>
             </Grid.Row>
             <Grid.Row centered>
               <Grid.Column width={6}>
-                <label className={'Admin-Form-Label'}>Address </label>
+                <label className={'Admin-Form-Label'} >Address </label>
               </Grid.Column>
               <Grid.Column width={10}>
                 <Form.Field>
-                  <TextArea placeholder='Address' style={{ minHeight: 100 }} />
+                  <TextArea name={'address'} onChange={handleInputs} value={address} placeholder='Address' style={{ minHeight: 100 }} />
                 </Form.Field>
               </Grid.Column>
             </Grid.Row>
@@ -86,15 +89,15 @@ export default class NewStudentPersonalInfo extends React.Component {
               <Grid.Column mobile={10}>
 
                 <DatePicker
-                  selected={this.state.startDate}
+                  selected={doj}
                   placeholderText="Click to select a date"
                   maxDate={new Date()}
                   showDisabledMonthNavigation
                   showMonthDropdown
                   showYearDropdown
                   dropdownMode="select"
-                  dateFormat="dd/MM/yyyy"
-                  onChange={this.handleDateChange}
+                  dateFormat="yyyy/MM/dd"
+                  onChange={handleDojChange}
                 />
 
               </Grid.Column>
@@ -107,7 +110,7 @@ export default class NewStudentPersonalInfo extends React.Component {
               </Grid.Column>
               <Grid.Column width={10}>
                 <Form.Field>
-                  <Form.Input fluid placeholder="Post Office Number" />
+                  <Form.Input fluid placeholder="Post Office Number" name={'poNumber'} value={poNumber} onChange={handleInputs}/>
                 </Form.Field>
               </Grid.Column>
             </Grid.Row>
@@ -119,15 +122,15 @@ export default class NewStudentPersonalInfo extends React.Component {
                 <Grid.Column mobile={10}>
 
                   <DatePicker
-                    selected={this.state.startDate}
+                    selected={dob}
                     placeholderText="Click to select a date of birth"
                     maxDate={new Date()}
                     showDisabledMonthNavigation
                     showMonthDropdown
                     showYearDropdown
                     dropdownMode="select"
-                    dateFormat="dd/MM/yyyy"
-                    onChange={this.handleDateChange}
+                    dateFormat="yyyy/MM/dd"
+                    onChange={handleDobChange}
                   />
 
                 </Grid.Column>

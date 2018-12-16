@@ -25,7 +25,7 @@ class Header extends Component {
   };
 
   render() {
-    const { activeItem, visible } = this.state;
+    const { visible } = this.state;
     const { children, history} = this.props;
 
     const leftItemsDesktop = [
@@ -80,8 +80,8 @@ class Header extends Component {
               onClick={this.handleClick}
             />
             <Accordion.Content active={true}>
-              <p onClick={()=> {history.push('create_hub'); this.handlePusher()}}>Add A Hub</p>,
-              <label onClick={()=> {history.push('edit_hub');  this.handlePusher()}}>Edit Hub</label>
+              <div onClick={()=> {history.push('create_hub'); this.handlePusher()}}>Add A Hub</div>,
+              <div onClick={()=> {history.push('edit_hub');  this.handlePusher()}}>Edit Hub</div>
             </Accordion.Content>
           </Menu.Item>
 
@@ -93,9 +93,8 @@ class Header extends Component {
               onClick={this.handleClick}
             />
             <Accordion.Content active={true}>
-              <p onClick={()=> {history.push('new_std'); this.handlePusher()}}>New Registration</p>,
-              <p onClick={()=> {history.push('edit_std');  this.handlePusher()}}>Edit Registration</p>
-              <label onClick={()=> {history.push('edit_std');  this.handlePusher()}}>Update Status</label>
+              <div onClick={()=> {history.push('new_std'); this.handlePusher()}}>New Registration</div>,
+              <div onClick={()=> {history.push('edit_std');  this.handlePusher()}}>Edit Registration</div>
             </Accordion.Content>
           </Menu.Item>
 
@@ -107,7 +106,7 @@ class Header extends Component {
               onClick={this.handleClick}
             />
             <Accordion.Content active={true}>
-              <p onClick={()=> {history.push('hub_activity_tracker'); this.handlePusher()}}>Start Activity</p>,
+              <div onClick={()=> {history.push('hub_activity_tracker'); this.handlePusher()}}>Start Activity</div>,
             </Accordion.Content>
           </Menu.Item>
 

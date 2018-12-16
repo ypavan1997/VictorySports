@@ -14,6 +14,10 @@ const options = [
   {key: 'c', value: 11, text: 'Coach'}
 ];
 
+const initalState = {
+  name: '', username: '', user_role: '', address: '', pincode: '', mobile: '', startDate: null, education: '', sport: '', about: ''
+}
+
 export default class AddNewUser extends React.Component {
 
   constructor(props) {
@@ -21,7 +25,7 @@ export default class AddNewUser extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this)
   }
 
-  state = { activeItem: 'Add New User' , isLoading: false};
+  state = {  isLoading: false};
 
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
@@ -39,7 +43,6 @@ export default class AddNewUser extends React.Component {
       startDate: date
     });
   }
-
   render() {
     const {name, username, user_role, address, pincode, mobile, startDate, education, sport, about, isLoading} = this.state;
 
@@ -80,7 +83,7 @@ export default class AddNewUser extends React.Component {
             </Grid.Column>
           </Grid.Row>
 
-          { this.state.user_role === 11 &&
+          { user_role === 11 &&
             <React.Fragment>
               <Grid.Row centered>
                 <Grid.Column width={6}>
@@ -88,7 +91,7 @@ export default class AddNewUser extends React.Component {
                 </Grid.Column>
                 <Grid.Column width={10}>
                   <Form.Field>
-                    <TextArea name={'address'} value={address} placeholder='Address' style={{ minHeight: 100 }} onChange={this.handleUserRoleChange}/>
+                    <TextArea name={'address'} value={address} placeholder='Address' style={{ minHeight: 100 }} onChange={this.handleChange}/>
                   </Form.Field>
                 </Grid.Column>
               </Grid.Row>
@@ -98,7 +101,7 @@ export default class AddNewUser extends React.Component {
                 </Grid.Column>
                 <Grid.Column width={10}>
                   <Form.Field>
-                    <Form.Input fluid name={'pincode'} value={pincode} placeholder="Pincode" onChange={this.handleUserRoleChange}/>
+                    <Form.Input fluid name={'pincode'} value={pincode} placeholder="Pincode" onChange={this.handleChange}/>
                   </Form.Field>
                 </Grid.Column>
 
@@ -110,7 +113,7 @@ export default class AddNewUser extends React.Component {
                 </Grid.Column>
                 <Grid.Column width={10}>
                   <Form.Field>
-                    <Form.Input name={'mobile'} value={mobile} fluid placeholder="Mobile" onChange={this.handleUserRoleChange}/>
+                    <Form.Input name={'mobile'} value={mobile} fluid placeholder="Mobile" onChange={this.handleChange}/>
                   </Form.Field>
                 </Grid.Column>
 
@@ -144,7 +147,7 @@ export default class AddNewUser extends React.Component {
                 </Grid.Column>
                 <Grid.Column width={10}>
                   <Form.Field>
-                    <Form.Input placeholder='Education' fluid name={'education'} value={education} />
+                    <Form.Input placeholder='Education' fluid name={'education'} value={education} onChange={this.handleChange}/>
                   </Form.Field>
                 </Grid.Column>
 
@@ -172,13 +175,11 @@ export default class AddNewUser extends React.Component {
               </Grid.Column>
             </Grid.Row>
 
-            </React.Fragment>
-
-               }
+            </React.Fragment>}
         </Grid>
         </Form>
         <br/>
-        {this.state.user_role === 11 && <Button primary content={'Add New Coach'} onClick={()=> {
+        {this.state.user_role === 11 && <Button disabled={isLoading} primary content={'Add New Coach'} onClick={()=> {
           this.setState({isLoading: true})
           console.log({
             method: 'POST',
@@ -219,12 +220,13 @@ export default class AddNewUser extends React.Component {
             .then(
 
               (result) => {
-                const {status} = result;
-                if (status < 400) {
+                const {statusCodeValue} = result;
+                if (statusCodeValue < 400) {
                   this.setState({
                     isLoaded: true,
                     isLoading: false,
-                    result: result
+                    result: result,
+                    ...initalState
                   });
                   createNotification('success', 'Coach Added')
                 } else {
@@ -240,12 +242,12 @@ export default class AddNewUser extends React.Component {
               // instead of a catch() block so that we don't swallow
               // exceptions from actual bugs in components.
               (error) => {
-                createNotification('error', 'Could not add coach, please try again');
                 this.setState({
                   isLoaded: true,
                   isLoading: false,
                   error
                 });
+                createNotification('error', 'Could not add coach, please try again')
               }
             )
         }}/> }
@@ -281,39 +283,31 @@ export default class AddNewUser extends React.Component {
               })
             })
             .then(res => res.json())
-            .then(
-
-              (result) => {
-                const {status} = result;
-                if (status < 400) {
-                  this.setState({
-                    isLoaded: true,
-                    isLoading: false,
-                    result: result
-                  });
+            .then(result => {
+                const {statusCodeValue} = result;
+                if (statusCodeValue < 400 && statusCodeValue > 200) {
                   createNotification('success', 'Admin User Added')
+                  this.setState({
+                    isLoading: false,
+                    result: result,
+                    ...initalState
+                  });
                 } else {
                   this.setState({
-                    isLoaded: true,
                     isLoading: false,
                     error: result
                   });
-                  createNotification('error')
+                  createNotification('error', 'Could not add Admin')
                 }
-              },
-              // Note: it's important to handle errors here
-              // instead of a catch() block so that we don't swallow
-              // exceptions from actual bugs in components.
-              (error) => {
-                console.log('here')
-                createNotification('error')
-                this.setState({
-                  isLoaded: true,
-                  isLoading: false,
-                  error
-                });
-              }
-            )
+                return result
+              }).catch((error) => {
+            this.setState({
+              isLoaded: true,
+              isLoading: false,
+              error
+            });
+            createNotification('error', 'Could not add Admin')
+          })
         }}/> }
         {!this.state.user_role && <Button disabled content={'Add New User'} onClick={()=> console.log(this.state)}/> }
       </Segment>

@@ -25,7 +25,7 @@ export default class MiscDetails extends React.Component {
   }
 
   render() {
-    const {name, username, password, retype_password, user_role} = this.state;
+    const {height, weight, j_size, b_size, handleChange} = this.state;
 
     return <React.Fragment>
 
@@ -37,7 +37,7 @@ export default class MiscDetails extends React.Component {
             </Grid.Column>
             <Grid.Column mobile={10}>
               <Form.Field>
-                <Form.Input name={'name'} value={name} fluid placeholder="Height" onChange={this.handleChange}/>
+                <Form.Input name={'height'} value={height} fluid placeholder="Height" onChange={handleChange}/>
               </Form.Field>
             </Grid.Column>
           </Grid.Row>
@@ -47,7 +47,7 @@ export default class MiscDetails extends React.Component {
             </Grid.Column>
             <Grid.Column mobile={10}>
               <Form.Field>
-                <Form.Input name={'username'} value={username} fluid placeholder="Weight" onChange={this.handleChange}/>
+                <Form.Input name={'weight'} value={weight} fluid placeholder="Weight" onChange={handleChange}/>
               </Form.Field>
             </Grid.Column>
           </Grid.Row>
@@ -57,7 +57,7 @@ export default class MiscDetails extends React.Component {
             </Grid.Column>
             <Grid.Column mobile={10}>
               <Form.Field>
-                <Form.Input name={'username'} value={username} fluid placeholder="Jersey Size" onChange={this.handleChange}/>
+                <Form.Input name={'j_size'} value={j_size} fluid placeholder="Jersey Size" onChange={handleChange}/>
               </Form.Field>
             </Grid.Column>
           </Grid.Row>
@@ -68,7 +68,7 @@ export default class MiscDetails extends React.Component {
             </Grid.Column>
             <Grid.Column mobile={10}>
               <Form.Field>
-                <Form.Input name={'name'} value={name} fluid placeholder="Boot Size" onChange={this.handleChange}/>
+                <Form.Input name={'b_size'} value={b_size} fluid placeholder="Boot Size" onChange={handleChange}/>
               </Form.Field>
             </Grid.Column>
           </Grid.Row>

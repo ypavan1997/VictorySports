@@ -32,26 +32,26 @@ class Header extends Component {
       { as:() => <React.Fragment>
           <Dropdown text='User Management' pointing className='link item'>
           <Dropdown.Menu>
-          <Dropdown.Item onClick={this.navigate} value={'user_mgmt'}>User Management</Dropdown.Item>
-      <Dropdown.Item onClick={this.navigate} value={'user_status'}>User Details</Dropdown.Item>
+          <Dropdown.Item onClick={this.navigate} value={'/user_mgmt'}>User Management</Dropdown.Item>
+      <Dropdown.Item onClick={this.navigate} value={'/user_status'}>User Details</Dropdown.Item>
       </Dropdown.Menu>
   </Dropdown>
     <Dropdown text='Hub Management' pointing className='link item'>
       <Dropdown.Menu>
-        <Dropdown.Item onClick={this.navigate} value={'create_hub'}>Create Hub</Dropdown.Item>
-        <Dropdown.Item onClick={this.navigate} value={'edit_hub'}>Edit Hub</Dropdown.Item>
-        <Dropdown.Item onClick={this.navigate} value={'delete_hub'}>Delete Hub</Dropdown.Item>
+        <Dropdown.Item onClick={this.navigate} value={'/create_hub'}>Create Hub</Dropdown.Item>
+        <Dropdown.Item onClick={this.navigate} value={'/edit_hub'}>Edit Hub</Dropdown.Item>
+        <Dropdown.Item onClick={this.navigate} value={'/delete_hub'}>Delete Hub</Dropdown.Item>
       </Dropdown.Menu>
       </Dropdown>
 
       <Dropdown text='Student Management' pointing className='link item'>
         <Dropdown.Menu>
-          <Dropdown.Item onClick={this.navigate} value={'new_std'}>New Registration</Dropdown.Item>
-          <Dropdown.Item onClick={this.navigate} value={'edit_std'}>Edit Registration</Dropdown.Item>
-          <Dropdown.Item onClick={this.navigate} value={'std_status'}>Update Status</Dropdown.Item>
+          <Dropdown.Item onClick={this.navigate} value={'/new_std'}>New Registration</Dropdown.Item>
+          <Dropdown.Item onClick={this.navigate} value={'/edit_std'}>Edit Registration</Dropdown.Item>
+          <Dropdown.Item onClick={this.navigate} value={'/std_status'}>Update Status</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-              <Menu.Item name='hub-activity-tracker' value={'hub_activity_tracker'} onClick={this.navigate}>
+              <Menu.Item name='hub-activity-tracker' value={'/hub_activity_tracker'} onClick={this.navigate}>
                   Hub Activity Tracker
               </Menu.Item>
         </React.Fragment>}
@@ -67,8 +67,8 @@ class Header extends Component {
               onClick={this.handleClick}
             />
             <Accordion.Content active={true}>
-              <p onClick={()=> {history.push('user_mgmt'); this.handlePusher()}}>Add A User</p>,
-              <label onClick={()=> {history.push('user_status');  this.handlePusher()}}>User Status</label>
+              <p onClick={()=> {history.push('/user_mgmt'); this.handlePusher()}}>Add A User</p>,
+              <label onClick={()=> {history.push('/user_status');  this.handlePusher()}}>User Status</label>
             </Accordion.Content>
           </Menu.Item>
 
@@ -80,8 +80,8 @@ class Header extends Component {
               onClick={this.handleClick}
             />
             <Accordion.Content active={true}>
-              <p onClick={()=> {history.push('create_hub'); this.handlePusher()}}>Add A Hub</p>,
-              <label onClick={()=> {history.push('edit_hub');  this.handlePusher()}}>Edit Hub</label>
+              <p onClick={()=> {history.push('/create_hub'); this.handlePusher()}}>Add A Hub</p>,
+              <label onClick={()=> {history.push('/edit_hub');  this.handlePusher()}}>Edit Hub</label>
             </Accordion.Content>
           </Menu.Item>
 
@@ -93,9 +93,9 @@ class Header extends Component {
               onClick={this.handleClick}
             />
             <Accordion.Content active={true}>
-              <p onClick={()=> {history.push('new_std'); this.handlePusher()}}>New Registration</p>,
-              <p onClick={()=> {history.push('edit_std');  this.handlePusher()}}>Edit Registration</p>
-              <label onClick={()=> {history.push('edit_std');  this.handlePusher()}}>Update Status</label>
+              <p onClick={()=> {history.push('/new_std'); this.handlePusher()}}>New Registration</p>,
+              <p onClick={()=> {history.push('/edit_std');  this.handlePusher()}}>Edit Registration</p>
+              <label onClick={()=> {history.push('/edit_std');  this.handlePusher()}}>Update Status</label>
             </Accordion.Content>
           </Menu.Item>
 
@@ -107,7 +107,7 @@ class Header extends Component {
               onClick={this.handleClick}
             />
             <Accordion.Content active={true}>
-              <p onClick={()=> {history.push('hub_activity_tracker'); this.handlePusher()}}>Start Activity</p>,
+              <p onClick={()=> {history.push('/hub_activity_tracker'); this.handlePusher()}}>Start Activity</p>,
             </Accordion.Content>
           </Menu.Item>
 

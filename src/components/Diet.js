@@ -34,20 +34,19 @@ export default class Diet extends Component {
         return <Form>
             <Form.Field>
                 <label>Special Diet</label>
-                <TextArea autoHeight placeholder='Max 500 characters' style={{ minHeight: 100 }} />
+                <TextArea autoHeight placeholder='Max 500 characters' style={{ minHeight: 100 }} name={'description'} value={this.props.value.description} onChange={this.props.onDietChange}/>
             </Form.Field>
             <Form.Field>
                 <FilePond ref={ref => this.pond = ref}
                           allowMultiple={true}
                           maxFiles={2}
-                          server="/api"
                           oninit={() => this.handleInit() }
-                          onupdatefiles={(fileItems) => {
+                          onupdatefiles={this.props.onDietImgChange}/*{(fileItems) => {
                               // Set current file objects to this.state
                               this.setState({
                                   files: fileItems.map(fileItem => fileItem.file)
                               });
-                          }}>
+                          }}*/>
 
                     {/* Update current files  */}
                     {this.state.files.map(file => (

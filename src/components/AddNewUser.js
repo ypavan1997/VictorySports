@@ -8,11 +8,16 @@ import Dropdown from "semantic-ui-react/dist/es/modules/Dropdown/Dropdown";
 import DatePicker from "react-datepicker/es/index";
 import TextArea from "semantic-ui-react/dist/es/addons/TextArea/TextArea";
 import {createNotification} from "../utils/utils";
+import Header from "semantic-ui-react/dist/es/elements/Header/Header";
+import Icon from "semantic-ui-react/dist/es/elements/Icon/Icon";
 
+const COACH_ID = 31;
+const ADMIN_ID = 21;
 const options = [
-  {key: 'a', value: 1, text: 'Admin'},
-  {key: 'c', value: 11, text: 'Coach'}
+  {key: 'a', value: ADMIN_ID, text: 'Admin'},
+  {key: 'c', value: COACH_ID, text: 'Coach'}
 ];
+
 
 const initalState = {
   name: '', username: '', user_role: '', address: '', pincode: '', mobile: '', startDate: null, education: '', sport: '', about: ''
@@ -47,8 +52,12 @@ export default class AddNewUser extends React.Component {
     const {name, username, user_role, address, pincode, mobile, startDate, education, sport, about, isLoading} = this.state;
 
     return <React.Fragment>
+      <Header as='h3' icon textAlign='center'>
+        <Icon name='user outline' circular />
+        <Header.Content>Add New User</Header.Content>
+      </Header>
       <Segment>
-        <Label  size={'medium'} color={'blue'} attached='top'>New User Details</Label>
+        <br/>
         <Form loading={isLoading}>
         <Grid doubling >
             <Grid.Row>
@@ -83,7 +92,7 @@ export default class AddNewUser extends React.Component {
             </Grid.Column>
           </Grid.Row>
 
-          { user_role === 11 &&
+          { user_role === COACH_ID &&
             <React.Fragment>
               <Grid.Row centered>
                 <Grid.Column width={6}>
@@ -159,8 +168,8 @@ export default class AddNewUser extends React.Component {
                 </Grid.Column>
                 <Grid.Column width={10}>
                   <Form.Field>
-                    <Dropdown placeholder='Sport(s)' value={sport} fluid selection options={[{key: 'a', text: 'Football' ,value: 1},
-                      {key: 'b', text: 'Boxing', value: 2}]} onChange={this.handleSportChange}/>
+                    <Dropdown placeholder='Sport(s)' value={sport} fluid selection options={[{key: 'a', text: 'Football' ,value: 31},
+                      {key: 'b', text: 'Boxing', value: 41}]} onChange={this.handleSportChange}/>
                   </Form.Field>
                 </Grid.Column>
               </Grid.Row>
@@ -179,7 +188,7 @@ export default class AddNewUser extends React.Component {
         </Grid>
         </Form>
         <br/>
-        {this.state.user_role === 11 && <Button disabled={isLoading} primary content={'Add New Coach'} onClick={()=> {
+        {this.state.user_role === COACH_ID && <Button disabled={isLoading} primary content={'Add New Coach'} onClick={()=> {
           this.setState({isLoading: true})
           console.log({
             method: 'POST',
@@ -251,7 +260,7 @@ export default class AddNewUser extends React.Component {
               }
             )
         }}/> }
-        {this.state.user_role === 1 && <Button disabled={isLoading} primary content={'Add New Admin'} onClick={()=> {
+        {this.state.user_role === ADMIN_ID && <Button disabled={isLoading} primary content={'Add New Admin'} onClick={()=> {
           this.setState({isLoading: true})
           console.log({
             method: 'POST',

@@ -25,7 +25,7 @@ export default class FamilyDetails extends React.Component {
   }
 
   render() {
-    const {f_name, m_income, f_occupation, f_income, m_name, m_occupation, handleInputs} = this.props;
+    const {f_name, m_income, f_occupation, f_income, m_name, m_occupation, handleInputs, siblings} = this.props;
 
     return <React.Fragment>
 
@@ -89,6 +89,17 @@ export default class FamilyDetails extends React.Component {
             <Grid.Column mobile={10}>
               <Form.Field>
                 <Form.Input name={'m_income'} value={m_income} fluid placeholder="Mother's Income" onChange={handleInputs}/>
+              </Form.Field>
+            </Grid.Column>
+          </Grid.Row>
+
+          <Grid.Row>
+            <Grid.Column mobile={6} textAlign={'left'}>
+              <label className={'Admin-Form-Label'}>Siblings </label>
+            </Grid.Column>
+            <Grid.Column mobile={10}>
+              <Form.Field>
+                <Form.Input name={'m_income'} value={siblings} fluid placeholder="Number of siblings" onChange={handleInputs}/>
               </Form.Field>
             </Grid.Column>
           </Grid.Row>

@@ -11,7 +11,7 @@ export default class SessionPlanned extends Component {
         return <Form>
                     <Form.Field>
                         <label>Please enter the session planned</label>
-                        <TextArea autoHeight placeholder='Max 500 characters' style={{ minHeight: 100 }} />
+                        <TextArea name={'description'} value={this.props.value.description} placeholder='Max 500 characters' style={{ minHeight: 100 }} onChange={this.props.onSessionPlannedChange} autoHeight/>
                     </Form.Field>
             </Form>
     }

@@ -10,7 +10,7 @@ export default class CheckIn extends Component {
     }
 
     getHubs() {
-        return [{ key: 'hub1', value: 1, text: 'Hub1' },
+        return [{ key: 'hub1', value: 81, text: 'Hub1' },
             { key: 'hub2', value: 'hub2', text: 'Hub2' },
             { key: 'hub2', value: 'hub2', text: 'Hub2' }];
     }

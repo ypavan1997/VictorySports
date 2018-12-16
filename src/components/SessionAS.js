@@ -11,11 +11,11 @@ export default class SessionAS extends Component {
         return <Form>
                 <Form.Field>
                     <label>Please enter the session aim</label>
-                    <TextArea autoHeight placeholder='Max 500 characters' style={{ minHeight: 100 }} />
+                    <TextArea name={'aim'} value={this.props.value.aim}  autoHeight placeholder='Max 500 characters' style={{ minHeight: 100 }} onChange={this.props.onSessionASChange} />
                 </Form.Field>
                 <Form.Field>
                     <label>Please enter the session schedule</label>
-                    <TextArea autoHeight placeholder='Max 500 characters' style={{ minHeight: 100 }} />
+                    <TextArea name={'schedule'} value={this.props.value.schedule} autoHeight placeholder='Max 500 characters' style={{ minHeight: 100 }} onChange={this.props.onSessionASChange}/>
                 </Form.Field>
 
         </Form>

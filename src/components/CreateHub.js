@@ -33,7 +33,7 @@ export default class CreateHub extends Component {
           <Grid doubling >
             <Grid.Row>
               <Grid.Column textAlign={'left'} mobile={6}>
-                <label className={'Admin-Form-Label'}>Father's Name </label>
+                <label className={'Admin-Form-Label'}>Name </label>
               </Grid.Column>
               <Grid.Column mobile={10}>
                 <Form.Field>

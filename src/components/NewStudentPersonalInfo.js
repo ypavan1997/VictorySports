@@ -55,7 +55,7 @@ export default class NewStudentPersonalInfo extends React.Component {
               </Grid.Column>
               <Grid.Column width={10}>
                 <Form.Field>
-                  <TextArea name={'address'} value={address} onChange={handleInputs} value={address} placeholder='Address' style={{ minHeight: 100 }} />
+                  <TextArea name={'address'} onChange={handleInputs} value={address} placeholder='Address' style={{ minHeight: 100 }} />
                 </Form.Field>
               </Grid.Column>
             </Grid.Row>

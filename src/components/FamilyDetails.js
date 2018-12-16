@@ -93,6 +93,17 @@ export default class FamilyDetails extends React.Component {
             </Grid.Column>
           </Grid.Row>
 
+          <Grid.Row>
+            <Grid.Column mobile={6} textAlign={'left'}>
+              <label className={'Admin-Form-Label'}>Siblings </label>
+            </Grid.Column>
+            <Grid.Column mobile={10}>
+              <Form.Field>
+                <Form.Input name={'m_income'} value={m_income} fluid placeholder="Number of siblings" onChange={handleInputs}/>
+              </Form.Field>
+            </Grid.Column>
+          </Grid.Row>
+
         </Grid>
       </Form>
       <br/>

@@ -105,21 +105,12 @@ export default class CreateHub extends Component {
                 .then(
 
                     (result) => {
-                        const {statusCodeValue} = result;
-                        if (statusCodeValue < 400 && statusCodeValue > 200) {
-                            this.setState({
-                                isLoading: false,
-                                result: result,
-                                ...initalState
-                            });
-                            createNotification('success', 'Hub Added')
-                        } else {
-                            this.setState({
-                                isLoading: false,
-                                error: result
-                            });
-                            createNotification('error', 'Could not add hub, please try again')
-                        }
+                      this.setState({
+                        isLoading: false,
+                        result: result,
+                        ...initalState
+                      });
+                      createNotification('success', 'Hub Added')
                     },
                     // Note: it's important to handle errors here
                     // instead of a catch() block so that we don't swallow

@@ -64,6 +64,7 @@ class HubActivityTracker extends React.Component {
         this.onGMChange = this.onGMChange.bind (this);
         this.onGMImgChange = this.onGMImgChange.bind (this);
         this.handleGM = this.handleGM.bind(this);
+        this.handleCheckOut = this.handleCheckOut.bind(this);
     }
 
     componentDidMount() {
@@ -187,7 +188,7 @@ class HubActivityTracker extends React.Component {
 
     handleCheckIn(){
         let formData = new FormData();
-        formData.append('coach_id', 111);
+        formData.append('coach_id', this.props.user.userRole.coach && this.props.user.userRole.coach.id);
         formData.append('hub_id', this.props.checkIn.hub);
         formData.append('action_type','CHECK-IN');
         formData.append('description', 'Check In');
@@ -207,7 +208,7 @@ class HubActivityTracker extends React.Component {
     handleSessionPlanned(){
         let formData = new FormData();
         formData.append('activity_id', this.props.activityId);
-        formData.append('coach_id', 111);
+        formData.append('coach_id', this.props.user.userRole.coach && this.props.user.userRole.coach.id);
         formData.append('hub_id', this.props.checkIn.hub);
         formData.append('action_type','SESSIONS PLAN');
         formData.append('description', 'Session Plan');
@@ -228,7 +229,7 @@ class HubActivityTracker extends React.Component {
     handleSessionAS(){
         let formData = new FormData();
         formData.append('activity_id', this.props.activityId);
-        formData.append('coach_id', 111);
+        formData.append('coach_id', this.props.user.userRole.coach && this.props.user.userRole.coach.id);
         formData.append('hub_id', this.props.checkIn.hub);
         formData.append('action_type','SESSIONS AIM and SCHEDULE');
         formData.append('description', 'Session Aim');
@@ -250,7 +251,7 @@ class HubActivityTracker extends React.Component {
     handlePracticeMatch(){
         let formData = new FormData();
         formData.append('activity_id', this.props.activityId);
-        formData.append('coach_id', 111);
+        formData.append('coach_id', this.props.user.userRole.coach && this.props.user.userRole.coach.id);
         formData.append('hub_id', this.props.checkIn.hub);
         formData.append('action_type','PRACTICE MATCH');
         formData.append('description', 'Practice Match');
@@ -273,7 +274,7 @@ class HubActivityTracker extends React.Component {
     handleDiet(){
         let formData = new FormData();
         formData.append('activity_id', this.props.activityId);
-        formData.append('coach_id', 111);
+        formData.append('coach_id', this.props.user.userRole.coach && this.props.user.userRole.coach.id);
         formData.append('hub_id', this.props.checkIn.hub);
         formData.append('action_type','DIET');
         formData.append('description', 'Diet');
@@ -296,7 +297,7 @@ class HubActivityTracker extends React.Component {
     handleProps(){
         let formData = new FormData();
         formData.append('activity_id', this.props.activityId);
-        formData.append('coach_id', 111);
+        formData.append('coach_id', this.props.user.userRole.coach && this.props.user.userRole.coach.id);
         formData.append('hub_id', this.props.checkIn.hub);
         formData.append('action_type','PROPS');
         formData.append('description', 'Props');
@@ -319,12 +320,35 @@ class HubActivityTracker extends React.Component {
     handleGM(){
         let formData = new FormData();
         formData.append('activity_id', this.props.activityId);
-        formData.append('coach_id', 111);
+        formData.append('coach_id', this.props.user.userRole.coach && this.props.user.userRole.coach.id);
         formData.append('hub_id', this.props.checkIn.hub);
-        formData.append('action_type','GROUND_MARKING');
+        formData.append('action_type','GROUND MARKING');
         formData.append('description', 'Ground Marking');
         formData.append('note1', this.props.diet.description);
         formData.append('image1', this.props.diet.image1 && this.props.diet.image1[0]);
+        //formData.append('image2', this.props.diet.image2);
+
+        fetch('https://ohack.herokuapp.com/v1/victoryfoundation/file/activitydetail', {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            body: formData, // body data type must match "Content-Type" header
+        })
+            .then(res => res.json())
+            .then(response => {
+                console.log('Success:', JSON.stringify(response));
+                this.props.updateActivityId(response && response.activity && response.activity.id)
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    handleCheckOut(){
+        let formData = new FormData();
+        formData.append('activity_id', this.props.activityId);
+        formData.append('coach_id', this.props.user.userRole.coach && this.props.user.userRole.coach.id);
+        formData.append('hub_id', this.props.checkIn.hub);
+        formData.append('action_type','CHECK-OUT');
+        formData.append('description', 'Check Out');
+        //formData.append('note1', this.props.diet.description);
+        //formData.append('image1', this.props.diet.image1 && this.props.diet.image1[0]);
         //formData.append('image2', this.props.diet.image2);
 
         fetch('https://ohack.herokuapp.com/v1/victoryfoundation/file/activitydetail', {
@@ -366,7 +390,7 @@ class HubActivityTracker extends React.Component {
                 //this.handlePracticeMatch();
                 break;
             case 8:
-                //this.handlePracticeMatch();
+                this.handleCheckOut();
                 break;
             default:
                 return 'Unknown step';
@@ -472,7 +496,8 @@ function mapStateToProps(state, ownProps) {
         practiceMatch: state.activityTracker.practiceMatch,
         diet: state.activityTracker.diet,
         props: state.activityTracker.props,
-        groundMarking: state.activityTracker.groundMarking
+        groundMarking: state.activityTracker.groundMarking,
+        user: state.user
     };
 }
 

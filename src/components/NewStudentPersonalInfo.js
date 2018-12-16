@@ -12,7 +12,7 @@ const options = [
 export default class NewStudentPersonalInfo extends React.Component {
 
   render() {
-    const {handleInputs, name, username, hubs, address, doj, dob, handleDobChange, handleDojChange, handleHubChange} = this.props;
+    const {handleInputs, name, username, hubs, address, doj, dob, handleDobChange, handleDojChange, handleHubChange, poNumber} = this.props;
 
     return <React.Fragment>
 
@@ -51,11 +51,11 @@ export default class NewStudentPersonalInfo extends React.Component {
             </Grid.Row>
             <Grid.Row centered>
               <Grid.Column width={6}>
-                <label className={'Admin-Form-Label'}>Address </label>
+                <label className={'Admin-Form-Label'} >Address </label>
               </Grid.Column>
               <Grid.Column width={10}>
                 <Form.Field>
-                  <TextArea name={'address'} value={address} placeholder='Address' style={{ minHeight: 100 }} />
+                  <TextArea name={'address'} value={address} onChange={handleInputs} value={address} placeholder='Address' style={{ minHeight: 100 }} />
                 </Form.Field>
               </Grid.Column>
             </Grid.Row>
@@ -87,7 +87,7 @@ export default class NewStudentPersonalInfo extends React.Component {
               </Grid.Column>
               <Grid.Column width={10}>
                 <Form.Field>
-                  <Form.Input fluid placeholder="Post Office Number" onChange={handleInputs}/>
+                  <Form.Input fluid placeholder="Post Office Number" name={'poNumber'} value={poNumber} onChange={handleInputs}/>
                 </Form.Field>
               </Grid.Column>
             </Grid.Row>

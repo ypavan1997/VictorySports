@@ -115,7 +115,7 @@ class HubActivityTracker extends React.Component {
             action_type: "CHECK-IN",
             description:"Check In"
         };
-        fetch('http://ohack.herokuapp.com/v1/victoryfoundation/file/activitydetail', {
+        fetch('https://ohack.herokuapp.com/v1/victoryfoundation/file/activitydetail', {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, cors, *same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached

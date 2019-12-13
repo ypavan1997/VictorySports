@@ -4,13 +4,13 @@ const initialState = {
     user: null
 };
 
-const flipStatusReducer =  (state = initialState, action) => {
+const flipStatusReducer =  async (state = initialState, action) => {
 
   switch (action.type) {
       
       case 'FLIP_STATUS':
             var isSuccessful=false;
-            var res= fetch(`https://ohack.herokuapp.com/v1/victoryfoundation/users/${action.payload.id}`,
+            var res= await fetch(`https://ohack.herokuapp.com/v1/victoryfoundation/users/${action.payload.id}`,
             {
               method: 'PUT',
               headers: {
@@ -22,25 +22,26 @@ const flipStatusReducer =  (state = initialState, action) => {
                 isSuccessful=false;
                 console.log(error);
                 createNotification('error', 'Could not update status, please try again');
-                //return state;
             });
 
-            action.payload.status='I';
-            
-            // var result=await res.json();
-            // const {statusCodeValue} = result;
-            // if (statusCodeValue < 400) {
-            //     isSuccessful=true;
-            //     createNotification('success', 'status is updated.');
-            // } else {
-            //     isSuccessful=false;
-            //     createNotification('error', 'Could not update status, please try again');
-            // }
             isSuccessful=true; //comment this
-            console.log(state);
             if(isSuccessful){
-                var currentUser=state.userManagement.userList.filter((user)=>user.id==action.payload.id);
-                currentUser.status=action.payload.status;
+              action.payload.status='I';
+              
+              // var result=await res.json();
+              // const {statusCodeValue} = result;
+              // if (statusCodeValue < 400) {
+              //     isSuccessful=true;
+              //     createNotification('success', 'status is updated.');
+              // } else {
+              //     isSuccessful=false;
+              //     createNotification('error', 'Could not update status, please try again');
+              // }
+              console.log(state);
+              if(isSuccessful){
+                  var currentUser=state.userManagement.userList.filter((user)=>user.id==action.payload.id);
+                  currentUser.status=action.payload.status;
+              }
             }
             default:
                 return {...state};

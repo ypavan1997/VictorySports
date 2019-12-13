@@ -11,3 +11,17 @@ export const addUserRole = (userRole) => {
         userRole
     }
 };
+
+export const flipUserStatus = (payload) => {
+    return {
+        type: 'FLIP_STATUS',
+        payload
+    }
+};
+
+export const editUserDetails = (payload) => {
+    return {
+        type: 'EDIT_USER',
+        payload
+    }
+};

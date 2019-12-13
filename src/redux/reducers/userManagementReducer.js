@@ -7,7 +7,7 @@ const userManagementReducer = (state = initialState, action) => {
       case 'ADD_USER_LIST':
           return Object.assign({}, state, { userList: action.users });
       default:
-      return state
+      return {...state}
   }
 };
 

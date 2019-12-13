@@ -18,7 +18,8 @@ import openActivityReducer from "./redux/reducers/openActivityReducer";
 import 'semantic-ui-css/semantic.min.css'
 import 'react-notifications/lib/notifications.css';
 import './index.css';
-
+import flipStatusReducer from "./redux/reducers/flipStatusReducer";
+import editUserDetailsReducer from "./redux/reducers/editUserDetailsReducer";
 
 const history = createBrowserHistory({
   basename: '/victory',
@@ -31,12 +32,14 @@ const middleWares = [
   logger
 ];
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   modal: modalReducer,
   user: userReducer,
   activityTracker: activityTrackerReducer,
   userManagement : userManagementReducer,
-  openActivity : openActivityReducer
+  openActivity : openActivityReducer,
+  flipStatusReducer: flipStatusReducer,
+  editUserDetailsReducer: editUserDetailsReducer
 });
 export const store = createStore(
   connectRouter(history)(rootReducer),

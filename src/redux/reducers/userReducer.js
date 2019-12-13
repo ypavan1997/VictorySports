@@ -16,7 +16,7 @@ const userReducer = (state = initialState, action) => {
               userRole : action.userRole
           };
     default:
-      return state
+      return {...state}
   }
 };
 

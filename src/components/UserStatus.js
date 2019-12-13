@@ -20,8 +20,8 @@ class UserStatus extends React.Component {
           .then(response => response.json())
           .then(data => {
               if(data) {
-                  //store.dispatch(addUserList(data));
-                  props.addUserList(data);
+                  store.dispatch(addUserList(data));
+                  //props.addUserList(data);
               }
           });
     }
@@ -51,7 +51,7 @@ class UserStatus extends React.Component {
                   <Table.Cell>
                   <Dropdown text='Select Action '>
                     <Dropdown.Menu>
-                      <Dropdown.Item text='View/Edit' value={user} key={user.id} onClick={this.props.editUserDetails.bind(this,user)}/>
+                      <Dropdown.Item text='View/Edit' value={user} key={user.id} />
                       <Dropdown.Item text='Deactivate User' key={user.id+" activate"} onClick={this.props.flipUserStatus.bind(this,user)}/>
                     </Dropdown.Menu>
                     </Dropdown>
@@ -86,7 +86,7 @@ class UserStatus extends React.Component {
                   <Dropdown text='Select Action '>
                     <Dropdown.Menu>
                       <Dropdown.Item text='View/Edit' key={user.id}/>
-                      <Dropdown.Item text='Activate User' key={user.id+" activate"}/>
+                      <Dropdown.Item text='Activate User' key={user.id+" inactivate"} onClick={this.props.flipUserStatus.bind(this,user)}/>
                     </Dropdown.Menu>
                     </Dropdown>
                     </Table.Cell>
@@ -108,8 +108,8 @@ const mapStateToProps=(state) =>{
 const mapDispatchToProps=(dispatch) =>{
   return {
       flipUserStatus: (payload)=>dispatch(flipUserStatus(payload)),
-      editUserDetails: (payload)=>dispatch(editUserDetails(payload)),
-      addUserList:(payload)=>dispatch(addUserList(payload))
+      //editUserDetails: (payload)=>dispatch(editUserDetails(payload)),
+      //addUserList:(payload)=>dispatch(addUserList(payload))
   }
 }
 

@@ -59,10 +59,13 @@ const userManagementReducer = (state = initialState, action) => {
       console.log("edit user");
       return Object.assign(
         {},
-        state,
+        { ...state },
         { userToBeEdited: action.payload },
         { editUser: true }
       );
+    case "SET_EDIT_TO_FALSE":
+      console.log("edit false ");
+      return Object.assign({}, { ...state }, { editUser: false });
     default:
       return { ...state };
   }

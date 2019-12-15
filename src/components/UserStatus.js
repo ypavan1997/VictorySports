@@ -6,11 +6,18 @@ import connect from "react-redux/es/connect/connect";
 import _ from "lodash";
 import { Divider, Dropdown } from "semantic-ui-react";
 import { flipUserStatus, editUserDetails } from "../redux/actions/UserActions";
+// import { browserHistory } from "react-router";
 
 class UserStatus extends React.Component {
   constructor(props) {
     super(props);
     this.loadUserData(props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.showEditUserScreen === true) {
+      this.props.history.push(`/edit_user`);
+    }
   }
 
   loadUserData(props) {
@@ -25,6 +32,7 @@ class UserStatus extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <React.Fragment>
         <br />
@@ -120,8 +128,11 @@ class UserStatus extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log("helllooooo");
+  // browserHistory.push("/user_mgmt");
   return {
-    userList: state.userManagement.userList
+    userList: state.userManagement.userList,
+    showEditUserScreen: state.userManagement.editUser
   };
 };
 

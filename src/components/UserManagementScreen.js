@@ -4,6 +4,7 @@ import Breadcrumb from "semantic-ui-react/dist/es/collections/Breadcrumb/Breadcr
 import Segment from "semantic-ui-react/dist/es/elements/Segment/Segment";
 import { connect } from "react-redux";
 import EditUser from "./EditUser";
+import { clearEditUser } from "./../redux/actions/UserActions";
 
 const addUserSections = [
   { key: "user_mgmgt", content: "User Management", link: false },
@@ -18,9 +19,21 @@ const editUserSections = [
 class UserManagementScreen extends Component {
   render() {
     console.log(this.props);
+    console.log(this.props.match.path);
+    console.log(this.props.location.pathname === "/edit_user");
+
+    // this.props.clearEditUser();
     return (
       <React.Fragment>
-        {!this.props.state.userManagement.editUser && (
+        {this.props.location.pathname === "/edit_user" && (
+          <div>
+            <Segment basic textAlign={"left"}>
+              <Breadcrumb icon="right angle" sections={editUserSections} />
+            </Segment>
+            <EditUser props={this.props} />
+          </div>
+        )}
+        {this.props.location.pathname === "/user_mgmt" && (
           <div>
             <Segment basic textAlign={"left"}>
               <Breadcrumb icon="right angle" sections={addUserSections} />
@@ -28,22 +41,22 @@ class UserManagementScreen extends Component {
             <AddUser />
           </div>
         )}
-        {this.props.state.userManagement.editUser && (
-          <div>
-            <Segment basic textAlign={"left"}>
-              <Breadcrumb icon="right angle" sections={editUserSections} />
-            </Segment>
-            <EditUser state={this.props.state} />
-          </div>
-        )}
       </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return { state: state };
-};
-let UserManagementScreenHelper = connect(mapStateToProps)(UserManagementScreen);
+const mapStateToProps = state => ({
+  state: state
+});
+
+const mapDispatchToProps = dispatch => ({
+  clearEditUser: () => dispatch(clearEditUser())
+});
+
+let UserManagementScreenHelper = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserManagementScreen);
 
 export default UserManagementScreenHelper;

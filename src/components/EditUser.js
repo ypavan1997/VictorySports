@@ -130,25 +130,47 @@ export default class EditUser extends React.Component {
       about,
       isLoading,
       date_long;
-    name = props.state.userManagement.userToBeEdited.name;
-    username = props.state.userManagement.userToBeEdited.username;
-    user_role =
-      props.state.userManagement.userToBeEdited.role.type === "Admin"
-        ? ADMIN_ID
-        : COACH_ID;
-    mobile = props.state.userManagement.userToBeEdited.coach.createdOn;
-    //   >>>>>>>>>>>>>>>>>>>>moblie is not capture in state<<<<<<<<<<<<<<<<<<
-    address = props.state.userManagement.userToBeEdited.coach.address;
-    pincode = props.state.userManagement.userToBeEdited.coach.zipcode;
-    startDate = props.state.userManagement.userToBeEdited.coach.createdOn;
-    education = props.state.userManagement.userToBeEdited.coach.education;
-    sport =
-      props.state.userManagement.userToBeEdited.coach.sport.sports_name ===
-      "FOOT BALL"
-        ? 31
-        : 41;
-    about = props.state.userManagement.userToBeEdited.coach.about;
-    date_long = props.state.userManagement.userToBeEdited.coach.updated;
+    if (props.state.userManagement.userToBeEdited.role.type === "ADMIN") {
+      name = props.state.userManagement.userToBeEdited.name;
+      username = props.state.userManagement.userToBeEdited.username;
+      user_role =
+        props.state.userManagement.userToBeEdited.role.type === "ADMIN"
+          ? ADMIN_ID
+          : COACH_ID;
+      mobile = props.state.userManagement.userToBeEdited.updatedOn;
+      //   >>>>>>>>>>>>>>>>>>>>moblie is not capture in state<<<<<<<<<<<<<<<<<<
+      //   address = props.state.userManagement.userToBeEdited.coach.address;
+      //   pincode = props.state.userManagement.userToBeEdited.coach.zipcode;
+      //   startDate = props.state.userManagement.userToBeEdited.coach.createdOn;
+      //   education = props.state.userManagement.userToBeEdited.coach.education;
+      //   sport =
+      //       props.state.userManagement.userToBeEdited.coach.sport.sports_name ===
+      //           "FOOT BALL"
+      //           ? 31
+      //           : 41;
+      //   about = props.state.userManagement.userToBeEdited.coach.about;
+      //   date_long = props.state.userManagement.userToBeEdited.coach.updated;
+    } else {
+      name = props.state.userManagement.userToBeEdited.name;
+      username = props.state.userManagement.userToBeEdited.username;
+      user_role =
+        props.state.userManagement.userToBeEdited.role.type === "Admin"
+          ? ADMIN_ID
+          : COACH_ID;
+      mobile = props.state.userManagement.userToBeEdited.coach.createdOn;
+      //   >>>>>>>>>>>>>>>>>>>>moblie is not capture in state<<<<<<<<<<<<<<<<<<
+      address = props.state.userManagement.userToBeEdited.coach.address;
+      pincode = props.state.userManagement.userToBeEdited.coach.zipcode;
+      startDate = props.state.userManagement.userToBeEdited.coach.createdOn;
+      education = props.state.userManagement.userToBeEdited.coach.education;
+      sport =
+        props.state.userManagement.userToBeEdited.coach.sport.sports_name ===
+        "FOOT BALL"
+          ? 31
+          : 41;
+      about = props.state.userManagement.userToBeEdited.coach.about;
+      date_long = props.state.userManagement.userToBeEdited.coach.updated;
+    }
     return (
       <React.Fragment>
         <Header as="h3" icon textAlign="center">

@@ -8,7 +8,7 @@ import { clearEditUser } from "./../redux/actions/UserActions";
 
 const editUserSections = [
   { key: "user_mgmgt", content: "User Management", link: false },
-  { key: "edit_user", content: "edit user", link: true }
+  { key: "edit_user", content: "view user", link: true }
 ];
 
 class UserManagementEditScreen extends Component {

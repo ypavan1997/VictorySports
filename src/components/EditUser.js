@@ -175,7 +175,7 @@ export default class EditUser extends React.Component {
       <React.Fragment>
         <Header as="h3" icon textAlign="center">
           <Icon name="user outline" circular />
-          <Header.Content>Edit existing User</Header.Content>
+          <Header.Content>View existing User</Header.Content>
         </Header>
         <Segment>
           <br />

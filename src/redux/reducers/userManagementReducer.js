@@ -5,6 +5,7 @@ const initialState = {
 };
 
 const userManagementReducer = (state = initialState, action) => {
+  console.log(state);
   switch (action.type) {
     case "ADD_USER_LIST":
       return Object.assign({}, state, { userList: action.users });

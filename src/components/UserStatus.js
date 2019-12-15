@@ -14,11 +14,11 @@ class UserStatus extends React.Component {
     this.loadUserData(props);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.showEditUserScreen === true) {
-      this.props.history.push(`/edit_user`);
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.showEditUserScreen === true) {
+  //     this.props.history.push(`/edit_user`);
+  //   }
+  // }
 
   loadUserData(props) {
     fetch("https://ohack.herokuapp.com/v1/victoryfoundation/users/")
@@ -64,10 +64,14 @@ class UserStatus extends React.Component {
                             text="View/Edit"
                             value={user}
                             key={user.id}
-                            onClick={this.props.editUserDetails.bind(
-                              this,
-                              user
-                            )}
+                            // onClick={this.props.editUserDetails.bind(
+                            //   this,
+                            //   user
+                            // )}
+                            onClick={() => {
+                              this.props.editUserDetails(user);
+                              helper(this.props);
+                            }}
                           />
                           <Dropdown.Item
                             text="Deactivate User"
@@ -127,8 +131,12 @@ class UserStatus extends React.Component {
   }
 }
 
+const helper = props => {
+  props.history.push(`/edit_user`);
+};
 const mapStateToProps = state => {
   console.log("helllooooo");
+  console.log(state);
   // browserHistory.push("/user_mgmt");
   return {
     userList: state.userManagement.userList,

@@ -6,12 +6,12 @@ import { connect } from "react-redux";
 import EditUser from "./EditUser";
 import { clearEditUser } from "./../redux/actions/UserActions";
 
-const addUserSections = [
+const editUserSections = [
   { key: "user_mgmgt", content: "User Management", link: false },
-  { key: "add_user", content: "Add a user", link: true }
+  { key: "edit_user", content: "edit user", link: true }
 ];
 
-class UserManagementScreen extends Component {
+class UserManagementEditScreen extends Component {
   render() {
     console.log(this.props);
     console.log(this.props.match.path);
@@ -20,12 +20,12 @@ class UserManagementScreen extends Component {
     // this.props.clearEditUser();
     return (
       <React.Fragment>
-        {this.props.location.pathname === "/user_mgmt" && (
+        {this.props.location.pathname === "/edit_user" && (
           <div>
             <Segment basic textAlign={"left"}>
-              <Breadcrumb icon="right angle" sections={addUserSections} />
-            </Segment>{" "}
-            <AddUser />
+              <Breadcrumb icon="right angle" sections={editUserSections} />
+            </Segment>
+            <EditUser props={this.props} />
           </div>
         )}
       </React.Fragment>
@@ -41,9 +41,9 @@ const mapDispatchToProps = dispatch => ({
   clearEditUser: () => dispatch(clearEditUser())
 });
 
-let UserManagementScreenHelper = connect(
+let UserManagementEditScreenHelper = connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserManagementScreen);
+)(UserManagementEditScreen);
 
-export default UserManagementScreenHelper;
+export default UserManagementEditScreenHelper;

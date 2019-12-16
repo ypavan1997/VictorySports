@@ -13,6 +13,7 @@ export const addUserRole = userRole => {
 };
 
 export const flipUserStatus = payload => {
+  console.log("flip user");
   return {
     type: "FLIP_STATUS",
     payload

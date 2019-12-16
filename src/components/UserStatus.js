@@ -76,7 +76,10 @@ class UserStatus extends React.Component {
                           <Dropdown.Item
                             text="Deactivate User"
                             key={user.id + " activate"}
-                            onClick={this.props.flipUserStatus.bind(this, user)}
+                            onClick={() => {
+                              apiCall(user, this.props.flipUserStatus);
+                            }}
+                            // onClick={this.props.flipUserStatus.bind(this, user)}
                           />
                         </Dropdown.Menu>
                       </Dropdown>
@@ -129,6 +132,24 @@ class UserStatus extends React.Component {
       </React.Fragment>
     );
   }
+}
+
+//>>>>>>>>>>>>>>>>>>>>this call has to PUT with user as body<<<<<<<<<<<<<<<<<<<<<<
+async function apiCall(user, flipUserStatus) {
+  let response = await fetch(`/`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+    // body: JSON.stringify(user)
+  }).then(result => {
+    console.log(result);
+    console.log("one");
+    flipUserStatus(user);
+    console.log("two");
+    return true;
+  });
 }
 
 const helper = props => {

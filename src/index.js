@@ -42,32 +42,32 @@ export const store = createStore(
 );
 
 // >>>>>>>>>>>>>>>below code is for Oauth<<<<<<<<<<<<<<
-// let result = {
-//   id: 651,
-//   username: "prajkumar.cse@gmail.com",
-//   name: "Raj Kumar",
-//   createdOn: 1544940250456,
-//   updatedOn: 1544940250456,
-//   role: { id: 21, type: "ADMIN" },
-//   status: "A",
-//   coach: {
-//     id: 111,
-//     education: "M.Tech @ BITS Pilani",
-//     image: null,
-//     about: "Code Hard",
-//     createdon: 1544940250456,
-//     updated: 1544940250456,
-//     experience: "Paypal",
-//     name: "Raj Kumar",
-//     address: "Sholinganalur",
-//     zipcode: "600041",
-//     active: "Y",
-//     sport: { id: 31, active: "Y", sports_name: "FOOT BALL" },
-//     id_proof: null,
-//     dob: 12345
-//   }
-// };
-// store.dispatch(addUserRole(result));
+let result = {
+  id: 651,
+  username: "prajkumar.cse@gmail.com",
+  name: "Raj Kumar",
+  createdOn: 1544940250456,
+  updatedOn: 1544940250456,
+  role: { id: 21, type: "ADMIN" },
+  status: "A",
+  coach: {
+    id: 111,
+    education: "M.Tech @ BITS Pilani",
+    image: null,
+    about: "Code Hard",
+    createdon: 1544940250456,
+    updated: 1544940250456,
+    experience: "Paypal",
+    name: "Raj Kumar",
+    address: "Sholinganalur",
+    zipcode: "600041",
+    active: "Y",
+    sport: { id: 31, active: "Y", sports_name: "FOOT BALL" },
+    id_proof: null,
+    dob: 12345
+  }
+};
+store.dispatch(addUserRole(result));
 
 fetch("/api/current_user")
   .then(response => response.json())
